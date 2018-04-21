@@ -6,16 +6,24 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { RootRoutingModule } from './/root-routing.module';
+import { InnerComponent } from './login/inner.component';
+import { AuthorizeComponent } from './login/authorize.component';
+import { AlertModule } from './shared/alert/alert.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    InnerComponent,
+    AuthorizeComponent
   ],
   imports: [
     BrowserModule,
     AngularFontAwesomeModule,
-    RootRoutingModule
+    RootRoutingModule,
+    AlertModule,
+    HttpClientModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

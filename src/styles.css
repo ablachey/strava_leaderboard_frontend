@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/css?family=Raleway:200,400";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  background-color: #fff;
+}
+
+h1 {
+  color: #44b917;
+}
+
+h2 {
+  color: #44b917;
+}
+
+.login-btn {
+  background-color: #fc4c02;
+  border-color: #fc4c02;
+}
+
+.login-btn:hover {
+  background-color: #e24501;
+  border-color: #e24501;
+}

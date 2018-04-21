@@ -1,0 +1,22 @@
+<div>
+  <div *ngIf="alertService.messagesSuccess.length" class="alert alert-success" role="alert">  
+    <p *ngFor="let message of alertService.messagesSuccess">{{ message }}</p>
+  </div>
+  <div *ngIf="alertService.messagesDanger.length" class="alert alert-danger" role="alert">
+    <p *ngFor="let message of alertService.messagesDanger">{{ message }}</p>
+  </div>
+  <div *ngIf="alertService.messagesWarning.length" class="alert alert-warning" role="alert">
+      <p *ngFor="let message of alertService.messagesWarning">{{ message }}</p>
+    </div>
+</div>
+
+<div *ngIf="alertService.isLoading" class="loading-screen">
+  <div class="loading-content">
+      <div class="loading-gif text-center">
+        <img src="assets/images/loader.gif">
+      </div>
+      <div class="loading-text text-center">
+        Loading...
+      </div>
+  </div>
+</div>
