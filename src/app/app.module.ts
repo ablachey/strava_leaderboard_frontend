@@ -10,6 +10,7 @@ import { InnerComponent } from './login/inner.component';
 import { AuthorizeComponent } from './login/authorize.component';
 import { AlertModule } from './shared/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFontAwesomeModule,
     RootRoutingModule,
     AlertModule,
-    HttpClientModule
+    HttpClientModule,
+    MainModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
