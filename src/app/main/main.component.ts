@@ -1,19 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { LoginService } from '../login/login.service';
+import { Title } from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-main',
-  template: `
-    <p>
-      main works!
-    </p>
-  `,
+  templateUrl: './main.component.html',
   styles: []
 })
 export class MainComponent implements OnInit {
+  public title: string;
+  public titleBase: string = environment.titleBase;
 
-  constructor() { }
+  constructor(public loginService: LoginService, public router: Router, public activatedRoute: ActivatedRoute, public titleService: Title) {
+    this.title = this.titleBase; 
 
-  ngOnInit() {
+    this.router.events.subscribe(e => {
+      if(e instanceof NavigationEnd) {
+        this.title = this.getTitle(this.router.routerState, this.router.routerState.root).join(' - ');
+
+        this.titleService.setTitle(this.titleBase + ' | ' + this.title);
+      }
+    });
   }
 
+  ngOnInit() {
+
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  getTitle(state, parent) {
+    var data = [];
+    if(parent && parent.snapshot.data && parent.snapshot.data.title) {
+      data.push(parent.snapshot.data.title);
+    }
+
+    if(state && parent) {
+      data.push(... this.getTitle(state, state.firstChild(parent)));
+    }
+    return data;
+  }
 }

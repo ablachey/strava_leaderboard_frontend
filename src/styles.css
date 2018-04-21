@@ -28,3 +28,12 @@ h2 {
   background-color: #e24501;
   border-color: #e24501;
 }
+
+.top-banner {
+  background-color: #44b917;
+  color: #fff;
+}
+
+.top-banner h2 {
+  color: #fff;
+}

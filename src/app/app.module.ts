@@ -11,6 +11,7 @@ import { AuthorizeComponent } from './login/authorize.component';
 import { AlertModule } from './shared/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MainModule } from './main/main.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MainModule } from './main/main.module';
     RootRoutingModule,
     AlertModule,
     HttpClientModule,
-    MainModule
+    MainModule,
+    FormsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

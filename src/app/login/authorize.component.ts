@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../shared/alert/alert.service';
 import { LoginService } from './login.service';
 import { User } from './user';
+import { environment } from '../../environments/environment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-authorize',
@@ -10,8 +12,11 @@ import { User } from './user';
   styles: []
 })
 export class AuthorizeComponent implements OnInit {
+  public baseTitle = environment.titleBase;
 
-  constructor(public activatedRoute: ActivatedRoute, public alertService: AlertService, public loginService: LoginService, public router: Router) { 
+  constructor(public activatedRoute: ActivatedRoute, public alertService: AlertService, public loginService: LoginService, public router: Router, public titleService: Title) { 
+    this.titleService.setTitle(this.baseTitle + ' | Authorize');
+
     this.activatedRoute.queryParams.subscribe(
       params => {
         let code = params['code'];

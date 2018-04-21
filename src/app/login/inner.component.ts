@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Title } from '@angular/platform-browser'; 
 
 @Component({
   selector: 'app-inner',
@@ -10,8 +11,11 @@ export class InnerComponent implements OnInit {
 
   public stravaLink: string = environment.stravaLogin;
   public loginPageMsg: string = '';
+  public baseTitle = environment.titleBase;
 
-  constructor() { }
+  constructor(public titleService: Title) { 
+    this.titleService.setTitle(this.baseTitle + ' | Login');
+  }
 
   ngOnInit() {
     this.loginPageMsg = `

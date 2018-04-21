@@ -1,3 +1,28 @@
-<p>
-  dashboard works!
-</p>
+<div class="row p-2">
+  <div class="col-sm-12 text-center">
+    <button class="btn btn-success" (click)="toggleAddForm()"><fa name="plus"></fa></button>
+    <button class="btn btn-warning" (click)="toggleSearchForm()"><fa name="search"></fa></button>
+  </div>
+</div>
+<div class="row" [hidden]="!showAdd">
+  <div class="col-sm-12 h-100">
+    <form class="form-inline  h-100 justify-content-center align-items-center" (ngSubmit)="add()" #addForm="ngForm">
+      <div class="form-group">
+        <input class="form-control add-input" name="bn" type="text" placeholder="Board Name" required [(ngModel)]="boardName" #bn="ngModel">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row" [hidden]="!showSearch">
+    <div class="col-sm-12 h-100">
+      <form class="form-inline  h-100 justify-content-center align-items-center" (ngSubmit)="srch()" #searchForm="ngForm">
+        <div class="form-group">
+          <input class="form-control search-input" name="search" type="text" placeholder="Search" required [(ngModel)]="keyword" #search="ngModel">
+        </div>
+      </form>
+    </div>
+  </div>
+<hr>
+<div class="row">
+
+</div>
