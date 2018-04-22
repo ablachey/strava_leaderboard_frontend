@@ -5,6 +5,9 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from './user';
+import { Router } from '@angular/router';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,7 +19,7 @@ export class AuthService {
   redirectUrl: string;
   baseUrl = environment.apiBase + 'auth/';
 
-  constructor(private http: HttpClient, private alertService: AlertService) { }
+  constructor(private http: HttpClient, private alertService: AlertService, private router: Router) { }
 
   authenticate(code: string): Observable<any> {
     this.alertService.clear();
@@ -34,7 +37,7 @@ export class AuthService {
     return this.http.get<any>(url, httpOpts);
   }
 
-  private getCurrentUserToken(): string {
+  getCurrentUserToken(): string {
     let token = JSON.parse(localStorage.getItem('token'));
     return token.value;
   }
@@ -63,6 +66,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
     this.isLoggedIn = false;
+    this.router.navigate(['/auth']);
   }
 
   getHeaders() : any {
@@ -71,5 +75,11 @@ export class AuthService {
     httpOptions = { headers: headers, responseType: 'json' };
     this.alertService.loadingStart();
     return httpOptions;
+  }
+
+  refreshToken(): Observable<string> {
+    let url = this.baseUrl + 'refresh';
+    
+    return this.http.post<string>(url, []);
   }
 }

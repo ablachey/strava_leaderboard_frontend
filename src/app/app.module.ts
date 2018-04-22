@@ -12,6 +12,8 @@ import { AlertModule } from './shared/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MainModule } from './main/main.module';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,14 @@ import { FormsModule } from '@angular/forms';
     MainModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '../../shared/alert/alert.service';
+import { BoardService } from './board.service';
+import { Board } from './board';
 
 @Component({
   selector: 'app-board',
@@ -19,10 +22,12 @@ export class BoardComponent implements OnInit {
   public showSearch: boolean = false;
   public keyword: string;
   public boardName: string;
+  public boards: Board[] = [];
 
-  constructor() { }
+  constructor(public alertService: AlertService, public boardService: BoardService) { }
 
   ngOnInit() {
+    this.loadBoards();
   }
 
   toggleAddForm() {
@@ -41,5 +46,17 @@ export class BoardComponent implements OnInit {
 
   srch() {
     console.log(this.keyword);
+  }
+
+  loadBoards() {
+    this.boardService.boards().subscribe(
+      b => {
+        this.boards = b.data as Board[];
+        console.log(this.boards);
+      },
+      e => {
+        this.alertService.handleErrors(e);
+      }
+    );
   }
 }
