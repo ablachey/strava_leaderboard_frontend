@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Board } from './board';
+import { BoardSearch } from './board-search';
 
 @Injectable()
 export class BoardService {
@@ -10,7 +11,31 @@ export class BoardService {
 
   constructor(private http: HttpClient) { }
 
-  boards(): Observable<any> {
+  sync(): Observable<any> {
+    let url = environment.apiBase + 'activities/sync';
+    return this.http.post<any>(url, []);
+  }
+
+  getBoards(): Observable<any> {
     return this.http.get<Board[]>(this.baseUrl);
+  }
+
+  searchBoards(keyword: string): Observable<any> {
+    let url = this.baseUrl + '/search';
+    return this.http.post<BoardSearch[]>(url, JSON.stringify({keyword: keyword}));
+  }
+
+  joinBoard(id: number): Observable<any> {
+    let url = this.baseUrl + '/' + id + '/join';
+    return this.http.post<any>(url, []);
+  }
+
+  joinBoardApprove(boardId: number, userId: number): Observable<any> {
+    let url = this.baseUrl + '/' + boardId + '/join/' + userId + '/approve';
+    return this.http.post<any>(url, []);
+  }
+
+  addBoard(name: string): Observable<any> {
+    return this.http.post<any>(this.baseUrl, JSON.stringify({name: name}));
   }
 }

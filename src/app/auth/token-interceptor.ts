@@ -9,7 +9,8 @@ import {
   HttpSentEvent,
   HttpHeaderResponse,
   HttpProgressEvent,
-  HttpUserEvent
+  HttpUserEvent,
+  HttpHeaders
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
@@ -32,10 +33,12 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public authService: AuthService) { }
 
   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
-    return req.clone({ setHeaders: { Authorization: 'Bearer ' + token }})
+    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+    return req.clone({ headers: headers, responseType: 'json'});
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
+    this.authService.loadingStart();
     let authorizationUrl = environment.apiBase + 'auth/authenticate';
 
     if(req.url === authorizationUrl) {
@@ -64,7 +67,6 @@ export class TokenInterceptor implements HttpInterceptor {
       return this.authService.refreshToken()   
           .map(
             (res: any) => {
-              console.log('error');
               let newToken = res.data.token;
               if(newToken) {
                 this.tokenSubject.next(newToken);

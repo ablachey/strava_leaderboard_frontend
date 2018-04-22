@@ -18,7 +18,7 @@ import { AlertService } from './alert.service';
     .loading-text {
       position: relative;
       font-size: 30px;
-      color: rgba(43, 144, 217, 0.65);
+      color: rgba(68, 185, 23, 0.65);
     }
     
     .loading-content {

@@ -4,13 +4,15 @@ import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { BoardModule } from './board/board.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { CardModule } from './card/card.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MainRoutingModule,
     BoardModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    CardModule
   ],
   declarations: [MainComponent]
 })

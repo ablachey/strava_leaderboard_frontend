@@ -69,17 +69,13 @@ export class AuthService {
     this.router.navigate(['/auth']);
   }
 
-  getHeaders() : any {
-    let httpOptions: any;
-    let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.getCurrentUserToken() });
-    httpOptions = { headers: headers, responseType: 'json' };
-    this.alertService.loadingStart();
-    return httpOptions;
-  }
-
   refreshToken(): Observable<string> {
     let url = this.baseUrl + 'refresh';
     
     return this.http.post<string>(url, []);
+  }
+
+  loadingStart() {
+    this.alertService.loadingStart();
   }
 }

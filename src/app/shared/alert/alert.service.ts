@@ -44,7 +44,6 @@ export class AlertService {
 
   handleErrors(e: any): void {
     this.clear();
-    console.log('alert service: ' + e);
     if(e) {
       if(e.status == 400) {
         if(e.error.error === 'token_not_provided') {
@@ -74,8 +73,9 @@ export class AlertService {
   }
 
   private addMultiple(jsonMessage: any): void {
-    let fields = JSON.parse(jsonMessage.error.message);
-    
+
+    let fields = jsonMessage.error.message;
+
     for(let key in fields) {
       let messages = fields[key];
       for(let value of messages) {
@@ -92,6 +92,11 @@ export class AlertService {
 
   loadingStop(): void {
     this.isLoading = false;
+  }
+
+  showSuccess(msg: string) {
+    this.addSuccessMessage(msg);
+    setTimeout(() => { this.clear() }, 3000);
   }
 
 }
