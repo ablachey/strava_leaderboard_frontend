@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { InnerComponent } from './login/inner.component';
-import { AuthorizeComponent } from './login/authorize.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthenticateComponent } from './auth/authenticate/authenticate.component';
+import { AuthorizeComponent } from './auth/authorize/authorize.component';
 
 const routes: Routes = [
   { 
-    path: 'login', component: LoginComponent, children: [
+    path: 'auth', component: AuthComponent, children: [
       {
-        path: '', component: InnerComponent
+        path: '', component: AuthenticateComponent
       },
       {
         path: 'authorize', component: AuthorizeComponent
       }
     ]
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/auth', pathMatch: 'full' }
 ];
 
 @NgModule({

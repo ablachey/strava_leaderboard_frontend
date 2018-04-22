@@ -11,7 +11,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class LoginService {
+export class AuthService {
   isLoggedIn: boolean = false;
   redirectUrl: string;
   baseUrl = environment.apiBase + 'auth/';

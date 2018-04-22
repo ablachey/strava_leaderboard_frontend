@@ -45,8 +45,8 @@ export class AlertService {
   handleErrors(e: any): void {
     this.clear();
     if(e.status == 401) {
-      this.addDangerMessage('Your session has expired, please login to continue!');
-      setTimeout(() => { this.router.navigate(['/login']) }, 2000);   
+      this.addDangerMessage('Your session has expired, please authorize to continue!');
+      setTimeout(() => { this.router.navigate(['/auth']) }, 2000);   
     }
     else if(e.status == 403) {
       this.addDangerMessage('Forbidden, please check your credentials');

@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   apiBase: "https://leaderboard-api.clayapps.com/api/",
-  stravaLogin: "https://www.strava.com/oauth/authorize?client_id=24837&response_type=code&redirect_uri=http://localhost:4200/login/authorize&approval_prompt=force&scope=public",
+  stravaAuth: "https://www.strava.com/oauth/authorize?client_id=24837&response_type=code&redirect_uri=http://localhost:4200/auth/authorize&approval_prompt=force&scope=public",
   titleBase: 'Leaderboard'
 };

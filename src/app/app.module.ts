@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth/auth.service';
 import { RootRoutingModule } from './/root-routing.module';
-import { InnerComponent } from './login/inner.component';
-import { AuthorizeComponent } from './login/authorize.component';
+import { AuthenticateComponent } from './auth/authenticate/authenticate.component';
+import { AuthorizeComponent } from './auth/authorize/authorize.component';
 import { AlertModule } from './shared/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MainModule } from './main/main.module';
@@ -16,8 +16,8 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    InnerComponent,
+    AuthComponent,
+    AuthenticateComponent,
     AuthorizeComponent
   ],
   imports: [
@@ -29,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     MainModule,
     FormsModule
   ],
-  providers: [LoginService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

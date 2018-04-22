@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { LoginService } from '../login/login.service';
+import { AuthService } from '../auth/auth.service';
 import { Title } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 
@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
   public title: string;
   public titleBase: string = environment.titleBase;
 
-  constructor(public loginService: LoginService, public router: Router, public activatedRoute: ActivatedRoute, public titleService: Title) {
+  constructor(public authService: AuthService, public router: Router, public activatedRoute: ActivatedRoute, public titleService: Title) {
     this.title = this.titleBase; 
 
     this.router.events.subscribe(e => {
@@ -30,8 +30,8 @@ export class MainComponent implements OnInit {
   }
 
   logout() {
-    this.loginService.logout();
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(['/auth']);
   }
 
   getTitle(state, parent) {

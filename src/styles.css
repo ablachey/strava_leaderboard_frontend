@@ -19,12 +19,12 @@ h2 {
   color: #44b917;
 }
 
-.login-btn {
+.auth-btn {
   background-color: #fc4c02;
   border-color: #fc4c02;
 }
 
-.login-btn:hover {
+.auth-btn:hover {
   background-color: #e24501;
   border-color: #e24501;
 }

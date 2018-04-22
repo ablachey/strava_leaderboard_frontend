@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from '../shared/alert/alert.service';
-import { LoginService } from './login.service';
-import { User } from './user';
-import { environment } from '../../environments/environment';
+import { AlertService } from '../../shared/alert/alert.service';
+import { AuthService } from '../auth.service';
+import { User } from '../user';
+import { environment } from '../../../environments/environment';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -14,7 +14,7 @@ import { Title } from '@angular/platform-browser';
 export class AuthorizeComponent implements OnInit {
   public baseTitle = environment.titleBase;
 
-  constructor(public activatedRoute: ActivatedRoute, public alertService: AlertService, public loginService: LoginService, public router: Router, public titleService: Title) { 
+  constructor(public activatedRoute: ActivatedRoute, public alertService: AlertService, public authService: AuthService, public router: Router, public titleService: Title) { 
     this.titleService.setTitle(this.baseTitle + ' | Authorize');
 
     this.activatedRoute.queryParams.subscribe(
@@ -24,7 +24,7 @@ export class AuthorizeComponent implements OnInit {
           this.alertService.addDangerMessage('Invalid Code');
         }
         else {
-          this.login(code);
+          this.authorize(code);
         }
       },
       e => {
@@ -36,23 +36,23 @@ export class AuthorizeComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(code: string) {
-    this.loginService.authenticate(code).subscribe(
+  authorize(code: string) {
+    this.authService.authenticate(code).subscribe(
       (res: any) => {
         let token = res.data.token;
         if(token) {
           localStorage.setItem('token', JSON.stringify({value: token}));
-          this.loginService.isLoggedIn = true;
+          this.authService.isLoggedIn = true;
           this.alertService.clear();
         }
 
-        this.loginService.getUserFromServer().subscribe(
+        this.authService.getUserFromServer().subscribe(
           userData => {
             let user = userData.data as User;
-            this.loginService.setLocalUser(user);
+            this.authService.setLocalUser(user);
 
-            if(this.loginService.isLoggedIn) {
-              let redirect = this.loginService.redirectUrl ? this.loginService.redirectUrl : 'dashboard';
+            if(this.authService.isLoggedIn) {
+              let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'dashboard';
 
               this.router.navigate([redirect]);
               this.alertService.clear();
