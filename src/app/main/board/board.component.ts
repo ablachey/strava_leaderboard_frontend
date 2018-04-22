@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  selector: 'app-board',
+  templateUrl: './board.component.html',
   styles: [
     `
     .add-input {
@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
     `
   ]
 })
-export class DashboardComponent implements OnInit {
+export class BoardComponent implements OnInit {
   public showAdd: boolean = false;
   public showSearch: boolean = false;
   public keyword: string;
