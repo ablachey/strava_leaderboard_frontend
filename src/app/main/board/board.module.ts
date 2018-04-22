@@ -5,13 +5,15 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule } from '@angular/forms';
 import { BoardService } from './board.service';
 import { AlertModule } from '../../shared/alert/alert.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     AngularFontAwesomeModule,
     FormsModule,
-    AlertModule
+    AlertModule,
+    RouterModule
   ],
   declarations: [BoardComponent],
   providers: [BoardService]

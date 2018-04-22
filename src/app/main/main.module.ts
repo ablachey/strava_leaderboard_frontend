@@ -5,6 +5,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { BoardModule } from './board/board.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CardModule } from './card/card.module';
+import { AuthGuardService } from '../shared/guards/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { CardModule } from './card/card.module';
     AngularFontAwesomeModule,
     CardModule
   ],
-  declarations: [MainComponent]
+  declarations: [MainComponent],
+  providers: [AuthGuardService]
 })
 export class MainModule { }
