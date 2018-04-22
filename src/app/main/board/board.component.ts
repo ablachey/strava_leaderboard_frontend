@@ -104,11 +104,9 @@ export class BoardComponent implements OnInit {
         this.boardService.sync().subscribe(
           r => {
             this.alertService.loadingStop();
-            console.log('syncing');
           },
           e => {
             this.alertService.handleErrors(e);
-            this.alertService.loadingStop();
           }
         );
       },

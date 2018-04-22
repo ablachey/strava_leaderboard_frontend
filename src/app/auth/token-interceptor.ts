@@ -38,12 +38,17 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-    this.authService.loadingStart();
+    
     let authorizationUrl = environment.apiBase + 'auth/authenticate';
+    let syncUrl = environment.apiBase + 'activities/sync';
 
     if(req.url === authorizationUrl) {
       return next.handle(req);
     }
+    if(req.url !== syncUrl) {
+      this.authService.loadingStart();
+    }
+    
     return next.handle(this.addToken(req, this.authService.getCurrentUserToken()))
       .catch(error => {
         if (error instanceof HttpErrorResponse) {
