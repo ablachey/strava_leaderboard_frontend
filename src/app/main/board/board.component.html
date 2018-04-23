@@ -1,74 +1,76 @@
-<div class="row p-2">
-  <div class="col-sm-12 text-center">
-    <button class="btn btn-success" (click)="toggleAddForm()"><fa name="plus"></fa></button>
-    <button class="btn btn-warning" (click)="toggleSearchForm()"><fa name="search"></fa></button>
+<div class="container">
+  <div class="row p-2">
+    <div class="col-sm-12 text-center">
+      <button class="btn btn-success" (click)="toggleAddForm()"><fa name="plus"></fa></button>
+      <button class="btn btn-warning" (click)="toggleSearchForm()"><fa name="search"></fa></button>
+    </div>
   </div>
-</div>
-<div class="row" [hidden]="!showAdd">
-  <div class="col-sm-12 h-100">
-    <form class="form-inline  h-100 justify-content-center align-items-center" (ngSubmit)="add()" #addForm="ngForm">
-      <div class="form-group">
-        <input class="form-control mb-2 mr-sm-2 add-input" name="bn" type="text" placeholder="Board Name" required [(ngModel)]="boardName" #bn="ngModel">
-        <button class="btn btn-success mb-2" [disabled]="!addForm.form.valid">Add</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="row" [hidden]="!showSearch">
+  <div class="row" [hidden]="!showAdd">
     <div class="col-sm-12 h-100">
-      <form class="form-inline  h-100 justify-content-center align-items-center" (ngSubmit)="srch()" #searchForm="ngForm">
+      <form class="form-inline  h-100 justify-content-center align-items-center" (ngSubmit)="add()" #addForm="ngForm">
         <div class="form-group">
-          <input class="form-control mb-2 mr-sm-2 search-input" name="search" type="text" placeholder="Search" required min="1" [(ngModel)]="keyword" #search="ngModel">
-          <button class="btn btn-warning mb-2" [disabled]="!searchForm.form.valid">Search</button>
+          <input class="form-control mb-2 mr-sm-2 add-input" name="bn" type="text" placeholder="Board Name" required [(ngModel)]="boardName" #bn="ngModel">
+          <button class="btn btn-success mb-2" [disabled]="!addForm.form.valid">Add</button>
         </div>
       </form>
     </div>
   </div>
-<hr>
-<app-alert></app-alert>
-<ng-template [ngIf]="showSearch" [ngIfElse]="listing">
-  <div class="row">
-    <div class="col-sm-4 col-12 grid-item" *ngFor="let searchBoard of searchBoards">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">{{ searchBoard.name }}</h5>
-          <button class="btn btn-success" (click)="join(searchBoard.id)" *ngIf="!searchBoard.isJoined;else alreadyJoined">Join</button>
-          <ng-template #alreadyJoined><button class="btn btn-secondary" disabled>Joined</button></ng-template>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #listing>
-  <div class="row">
-    <div class="col-sm-6 col-12 grid-item" *ngFor="let board of boards">
-      <div class="card">
-        <div class="card-header">
-          {{ board.name }}
-        </div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let athlete of board.athletes">
-              <span>
-                <img src="{{ athlete.image.medium }}" class="listing-img">
-              </span>
-              <span class="pl-3">{{ athlete.firstname }} {{ athlete.lastname }} &nbsp;&nbsp; <span *ngIf="athlete.admin && athlete.active"><fa name="user-secret"></fa></span></span>
-              <span class="float-right btn btn-success" *ngIf="board.admin && !athlete.active" (click)="approve(board.id, athlete.id)">
-                <fa name="check-circle"></fa>
-              </span>
-            </li>
-          </ul>
-          <div class="col-sm-12 text-center" *ngIf="board.active;else awaitingApproval">
-            <a [routerLink]="['../board', board.id, 'cards']" class="btn btn-success mt-4">View</a>
+  <div class="row" [hidden]="!showSearch">
+      <div class="col-sm-12 h-100">
+        <form class="form-inline  h-100 justify-content-center align-items-center" (ngSubmit)="srch()" #searchForm="ngForm">
+          <div class="form-group">
+            <input class="form-control mb-2 mr-sm-2 search-input" name="search" type="text" placeholder="Search" required min="1" [(ngModel)]="keyword" #search="ngModel">
+            <button class="btn btn-warning mb-2" [disabled]="!searchForm.form.valid">Search</button>
           </div>
-          <ng-template #awaitingApproval>
-            <div class="col-sm-12 text-center">
-              Awaiting Approval
-            </div>
-          </ng-template>
+        </form>
+      </div>
+    </div>
+  <hr>
+  <app-alert></app-alert>
+  <ng-template [ngIf]="showSearch" [ngIfElse]="listing">
+    <div class="row">
+      <div class="col-sm-4 col-12 grid-item" *ngFor="let searchBoard of searchBoards">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ searchBoard.name }}</h5>
+            <button class="btn btn-success" (click)="join(searchBoard.id)" *ngIf="!searchBoard.isJoined;else alreadyJoined">Join</button>
+            <ng-template #alreadyJoined><button class="btn btn-secondary" disabled>Joined</button></ng-template>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+
+  <ng-template #listing>
+    <div class="row">
+      <div class="col-sm-12 col-12 grid-item" *ngFor="let board of boards">
+        <div class="card">
+          <div class="card-header">
+            {{ board.name }}
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let athlete of board.athletes">
+                <span>
+                  <img src="{{ athlete.image.medium }}" class="listing-img">
+                </span>
+                <span class="pl-3">{{ athlete.firstname }} {{ athlete.lastname }} &nbsp;&nbsp; <span *ngIf="athlete.admin && athlete.active"><fa name="user-secret"></fa></span></span>
+                <span class="float-right btn btn-success" *ngIf="board.admin && !athlete.active" (click)="approve(board.id, athlete.id)">
+                  <fa name="check-circle"></fa>
+                </span>
+              </li>
+            </ul>
+            <div class="col-sm-12 text-center" *ngIf="board.active;else awaitingApproval">
+              <a [routerLink]="['../board', board.id, 'cards']" class="btn btn-success mt-4">View</a>
+            </div>
+            <ng-template #awaitingApproval>
+              <div class="col-sm-12 text-center">
+                Awaiting Approval
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

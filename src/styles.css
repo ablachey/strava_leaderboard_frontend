@@ -51,3 +51,25 @@ h2 {
   height: 48px;
   border-radius: 24px;
 }
+
+.card-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+}
+
+.leader-gold {
+  background-color: #ffd700;
+}
+
+.leader-silver {
+  background-color: #c0c0c0;
+}
+
+.leader-bronze {
+  background-color: #daa520;
+}
+
+.leader-not {
+  background-color: #1b1b1b;
+}

@@ -1,3 +1,51 @@
-<p>
-  card works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 p-2">
+      <div class="form-inline">
+          <div class="form-group mb-2">
+            <label class="mb-2 mr-sm-2" for="days">Board Name Loooooooooooooong</label>
+            <select class="form-control mb-2" id="days">
+              <option>Last 7 days</option>
+            </select>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-12">
+      <div class="card">
+        <div class="card-header">
+          Card Name
+        </div>
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-sm-2 col-3">
+                  <img class="card-img" src="https://lh3.googleusercontent.com/-OYsJe8LJi3c/AAAAAAAAAAI/AAAAAAAAAD8/rhArhyKieEI/photo.jpg">
+                </div>
+                <div class="col-sm-4 col-9">
+                  This is the name
+                </div>
+                <div class="col-sm-2 col-4">
+                  <small>{{ '2018-03-27 18:46:10'|date:"dd MMM hh:mm" }}</small>
+                </div>
+                <div class="col-sm-2 col-4">
+                  <small>{{ '48016'|distance }}</small>
+                </div>
+                <div class="col-sm-2 col-4">
+                  <span class="badge badge-secondary float-right mt-2 leader-gold">
+                    {{ '3670'|time }}
+                  </span>
+                </div>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

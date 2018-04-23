@@ -20,7 +20,7 @@ import { TokenInterceptor } from './auth/token-interceptor';
     AppComponent,
     AuthComponent,
     AuthenticateComponent,
-    AuthorizeComponent
+    AuthorizeComponent,
   ],
   imports: [
     BrowserModule,
