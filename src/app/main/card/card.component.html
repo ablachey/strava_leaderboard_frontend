@@ -3,12 +3,26 @@
     <div class="col-sm-12 p-2">
       <div class="form-inline">
           <div class="form-group mb-2">
-            <label class="mb-2 mr-sm-2" for="days">Board Name Loooooooooooooong</label>
-            <select class="form-control mb-2" id="days">
-              <option>Last 7 days</option>
+            <label class="mb-2 mr-sm-2" for="days"><h4>{{ boardName }}</h4></label>
+            <select class="form-control mb-2" id="days" #d (change)="changeDays(d.value)">
+              <option *ngFor="let dayCount of days" [value]="dayCount">Last {{dayCount}} days</option>
             </select>
           </div>
         </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="leader.count > 0">
+    <div class="col-sm-4 mb-3 text-center">
+      <div class="card pt-2">
+        <h5>Leader</h5>
+        <div class="col-sm-12">
+          <img class="leader-img" src="{{ leader.athlete.image.medium }}">
+        </div>
+        <div class="col-sm-12 pt-2">
+          <p><strong>{{ leader.athlete.firstname }} {{ leader.athlete.lastname }}</strong></p>
+          <p>Have won {{ leader.count }} cards in last {{ selectedDays }} days</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -28,7 +42,7 @@
                   {{ entry.user.firstname }} {{ entry.user.lastname }}
                 </div>
                 <div class="col-sm-2 col-4">
-                  <small>{{ entry.activity.start_date_local|date:"dd MMM hh:mm" }}</small>
+                  <small>{{ entry.activity.start_date_local|date:"dd MMM HH:mm" }}</small>
                 </div>
                 <div class="col-sm-2 col-4">
                   <small>{{ entry.distance|distance }}</small>

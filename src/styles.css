@@ -73,3 +73,9 @@ h2 {
 .leader-not {
   background-color: #1b1b1b;
 }
+
+.leader-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+}
