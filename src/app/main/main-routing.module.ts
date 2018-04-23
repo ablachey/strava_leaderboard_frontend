@@ -19,7 +19,8 @@ const mainRoutes: Routes = [
       },
       {
         path: '', redirectTo: '/boards', pathMatch: 'full'
-      }
+      },
+      { path: '**', redirectTo: '/boards', pathMatch: 'full'}
     ]
   }
 ];

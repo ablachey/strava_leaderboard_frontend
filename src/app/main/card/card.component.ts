@@ -6,6 +6,8 @@ import { FastCard } from './fast-card';
 import { BoardService } from '../board/board.service';
 import { Board } from '../board/board';
 import { User } from '../../auth/user';
+import { Activity } from './activity';
+import { OverallCard } from './overall-card';
 
 class LD {
   athlete: User;
@@ -29,6 +31,30 @@ class FC {
   }
 }
 
+class HC {
+  name: string;
+  type: string;
+  entries: Activity[];
+
+  constructor(name?: string, type?: string, entries?: Activity[]) {
+    this.name = name;
+    this.type = type;
+    this.entries = entries;
+  }
+}
+
+class OC {
+  name: string;
+  type: string;
+  entries: OverallCard[];
+
+  constructor(name?: string, type?: string, entries?: OverallCard[]) {
+    this.name = name;
+    this.type = type;
+    this.entries = entries;
+  }
+}
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -37,6 +63,8 @@ class FC {
 
 export class CardComponent implements OnInit {
   fastCards: FC[] = [];
+  highCards: HC[] = [];
+  overallCards: OC[] = [];
   selectedDays: number | string = 7;
   selectedBoard: Board;
   boardName: string = '';
@@ -49,21 +77,22 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     let selectedBoardId = this.route.snapshot.params.id;
-    this.cardService.baseUrl = this.cardService.baseUrl + selectedBoardId;
 
     this.boardService.getBoard(selectedBoardId).subscribe(
       res => {
         this.selectedBoard = res.data as Board;
         this.boardName = this.selectedBoard.name;
         this.alertService.loadingStop();
+
+        this.loadFastCards();
+        this.loadHighCards();
+        this.loadOverallCards();
       },
       e => {
         this.alertService.handleErrors(e);
         this.alertService.loadingStop();
       }
     );
-
-    this.loadFastCards();
   }
 
   changeDays(days: number | string) {
@@ -71,6 +100,8 @@ export class CardComponent implements OnInit {
       this.resetLeader();
       this.selectedDays = days;
       this.loadFastCards();
+      this.loadHighCards();
+      this.loadOverallCards();
     }
   }
 
@@ -85,11 +116,24 @@ export class CardComponent implements OnInit {
     this.fastCards.push(new FC('Fastest 10K', 'ten-kilometer', []));
   }
 
+  initHighCards(): void {
+    this.highCards = [];
+    this.highCards.push(new HC('Longest Run', 'longest-run', []));
+    this.highCards.push(new HC('Furthest Run', 'furthest-run', []));
+    this.highCards.push(new HC('Maximum Calories Burnt', 'max-calories', []));
+  }
+
+  initOverallCards(): void {
+    this.overallCards = [];
+    this.overallCards.push(new OC('Overall Distance', 'overall-distance', []));
+    this.overallCards.push(new OC('Overall Time', 'overall-time', []));
+  }
+
   loadFastCards(): void {
     this.initFastCards();
 
     for(let fc of this.fastCards) {
-      this.cardService.getFastCards(fc.type, this.selectedDays).subscribe(
+      this.cardService.getFastCards(this.selectedBoard.id, fc.type, this.selectedDays).subscribe(
         res => {
           fc.entries = res.data as FastCard[];
           if(fc.entries.length > 0) {
@@ -102,6 +146,45 @@ export class CardComponent implements OnInit {
           this.alertService.loadingStop();
         }
       );
+    }
+  }
+
+  loadHighCards(): void {
+    this.initHighCards();
+    for(let hc of this.highCards) {
+      this.cardService.getHighCards(this.selectedBoard.id, hc.type, this.selectedDays).subscribe(
+        res => {
+          hc.entries = res.data as Activity[];
+          if(hc.entries.length > 0) {
+            this.processLeader(hc.entries[0].athlete);
+          }
+          this.alertService.loadingStop();
+        },
+        e => {
+          this.alertService.handleErrors(e);
+          this.alertService.loadingStop();
+        }
+      );
+    }
+  }
+
+
+  loadOverallCards(): void {
+    this.initOverallCards();
+    for(let oc of this.overallCards) {
+      this.cardService.getOverallCards(this.selectedBoard.id, oc.type, this.selectedDays).subscribe(
+        res => {
+          oc.entries = res.data as OverallCard[];
+          if(oc.entries.length > 0) {
+            this.processLeader(oc.entries[0].athlete);
+          }
+          this.alertService.loadingStop();
+        },
+        e => {
+          this.alertService.handleErrors(e);
+          this.alertService.loadingStop();
+        }
+      )
     }
   }
 

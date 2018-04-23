@@ -1,3 +1,5 @@
+import { User } from '../../auth/user';
+
 export class Activity {
   constructor(
     public id?: number,
@@ -8,6 +10,7 @@ export class Activity {
     public moving_time?: number,
     public elapsed_time?: number,
     public type?: string,
-    public start_date_local?: string
+    public start_date_local?: string,
+    public athlete?: User,
   ) { }
 }
