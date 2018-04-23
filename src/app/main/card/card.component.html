@@ -12,30 +12,30 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-12">
-      <div class="card">
+    <div class="col-sm-12 col-12 mb-3" *ngFor="let fastCard of fastCards">
+      <div class="card" *ngIf="fastCard.entries.length > 0">
         <div class="card-header">
-          Card Name
+          <b>{{ fastCard.name }}</b>
         </div>
         <div class="card-body p-0">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+            <li class="list-group-item" *ngFor="let entry of fastCard.entries; let i = index">
               <div class="row">
                 <div class="col-sm-2 col-3">
-                  <img class="card-img" src="https://lh3.googleusercontent.com/-OYsJe8LJi3c/AAAAAAAAAAI/AAAAAAAAAD8/rhArhyKieEI/photo.jpg">
+                  <img class="card-img" src="{{ entry.user.image.medium }}">
                 </div>
                 <div class="col-sm-4 col-9">
-                  This is the name
+                  {{ entry.user.firstname }} {{ entry.user.lastname }}
                 </div>
                 <div class="col-sm-2 col-4">
-                  <small>{{ '2018-03-27 18:46:10'|date:"dd MMM hh:mm" }}</small>
+                  <small>{{ entry.activity.start_date_local|date:"dd MMM hh:mm" }}</small>
                 </div>
                 <div class="col-sm-2 col-4">
-                  <small>{{ '48016'|distance }}</small>
+                  <small>{{ entry.distance|distance }}</small>
                 </div>
                 <div class="col-sm-2 col-4">
-                  <span class="badge badge-secondary float-right mt-2 leader-gold">
-                    {{ '3670'|time }}
+                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                    {{ entry.moving_time|time }}
                   </span>
                 </div>
               </div>
