@@ -79,3 +79,18 @@ h2 {
   height: 200px;
   border-radius: 100px;
 }
+
+.logo-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo-link:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo-link:active {
+  text-decoration: none;
+  color: #fff;
+}
