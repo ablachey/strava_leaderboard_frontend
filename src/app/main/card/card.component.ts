@@ -8,6 +8,7 @@ import { Board } from '../board/board';
 import { User } from '../../auth/user';
 import { Activity } from './activity';
 import { OverallCard } from './overall-card';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 class LD {
   athlete: User;
@@ -71,6 +72,9 @@ export class CardComponent implements OnInit {
   leaders: LD[] = [];
   leader: LD = new LD(new User(), 0);
   days: number[] = [7, 15, 30];
+  fastSubject: BehaviorSubject<FC[]> = new BehaviorSubject(null);
+  highSubject: BehaviorSubject<HC[]> = new BehaviorSubject(null);
+  overallSubject: BehaviorSubject<OC[]> = new BehaviorSubject(null);
   
 
   constructor(public alertService: AlertService, public cardService: CardService, public route: ActivatedRoute, public boardService: BoardService) { }
@@ -131,60 +135,81 @@ export class CardComponent implements OnInit {
 
   loadFastCards(): void {
     this.initFastCards();
-
-    for(let fc of this.fastCards) {
-      this.cardService.getFastCards(this.selectedBoard.id, fc.type, this.selectedDays).subscribe(
-        res => {
-          fc.entries = res.data as FastCard[];
-          if(fc.entries.length > 0) {
-            this.processLeader(fc.entries[0].user);
-          }
-          this.alertService.loadingStop();
-        },
-        e => {
-          this.alertService.handleErrors(e);
-          this.alertService.loadingStop();
-        }
-      );
-    }
+    this.lfc(0);
   }
 
   loadHighCards(): void {
     this.initHighCards();
-    for(let hc of this.highCards) {
-      this.cardService.getHighCards(this.selectedBoard.id, hc.type, this.selectedDays).subscribe(
-        res => {
-          hc.entries = res.data as Activity[];
-          if(hc.entries.length > 0) {
-            this.processLeader(hc.entries[0].athlete);
-          }
-          this.alertService.loadingStop();
-        },
-        e => {
-          this.alertService.handleErrors(e);
-          this.alertService.loadingStop();
-        }
-      );
-    }
+    this.lhc(0);
   }
 
 
   loadOverallCards(): void {
     this.initOverallCards();
-    for(let oc of this.overallCards) {
-      this.cardService.getOverallCards(this.selectedBoard.id, oc.type, this.selectedDays).subscribe(
+    this.loc(0);
+  }
+
+  lfc(i: number) {
+    let totalCalls = this.fastCards.length;
+    if(i < totalCalls) {
+      this.cardService.getFastCards(this.selectedBoard.id, this.fastCards[i].type, this.selectedDays).subscribe(
         res => {
-          oc.entries = res.data as OverallCard[];
-          if(oc.entries.length > 0) {
-            this.processLeader(oc.entries[0].athlete);
+          this.fastCards[i].entries = res.data as FastCard[];
+          if(this.fastCards[i].entries.length > 0) {
+            this.processLeader(this.fastCards[i].entries[0].user);
           }
           this.alertService.loadingStop();
+          this.fastSubject.next(this.fastCards);
+          this.lfc(i + 1);
         },
         e => {
           this.alertService.handleErrors(e);
           this.alertService.loadingStop();
         }
-      )
+      );
+    }
+  }
+
+  lhc(i: number) {
+    let totalCalls = this.highCards.length;
+    if(i < totalCalls) {
+      this.cardService.getHighCards(this.selectedBoard.id, this.highCards[i].type, this.selectedDays).subscribe(
+        res => {
+          this.highCards[i].entries = res.data as Activity[];
+          if(this.highCards[i].entries.length > 0) {
+            this.processLeader(this.highCards[i].entries[0].athlete);
+          }
+          this.alertService.loadingStop();
+          this.highSubject.next(this.highCards);
+          this.lhc(i + 1);
+        },
+        e => {
+          this.alertService.handleErrors(e);
+          this.alertService.loadingStop();
+        }
+      );
+    }
+  }
+
+  loc(i: number) {
+    let totalCalls = this.overallCards.length;
+
+    if(i < totalCalls) {
+      this.cardService.getOverallCards(this.selectedBoard.id, this.overallCards[i].type, this.selectedDays).subscribe(
+        res => {
+          this.overallCards[i].entries = res.data as OverallCard[];
+          if(this.overallCards[i].entries.length > 0) {
+            this.processLeader(this.overallCards[i].entries[0].athlete);
+          }
+          this.alertService.loadingStop();
+          this.overallSubject.next(this.overallCards);
+          this.loc(i + 1);
+        },
+        e => {
+          this.alertService.handleErrors(e);
+          this.alertService.loadingStop();
+        }
+      );
     }
   }
 

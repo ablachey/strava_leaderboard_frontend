@@ -20,12 +20,14 @@
     <div class="col-sm-4 mb-3 text-center">
       <div class="card pt-2">
         <h5>Leader</h5>
-        <div class="col-sm-12">
-          <img class="leader-img" src="{{ leader.athlete.image.medium }}">
-        </div>
-        <div class="col-sm-12 pt-2">
-          <p><strong>{{ leader.athlete.firstname }} {{ leader.athlete.lastname }}</strong></p>
-          <p>Have won {{ leader.count }} cards in last {{ selectedDays }} days</p>
+        <div class="row">
+          <div class="col-sm-12">
+            <img class="img-responsive leader-img" src="{{ leader.athlete.image.large }}">
+          </div>
+          <div class="col-sm-12 pt-2">
+            <p><strong>{{ leader.athlete.firstname }} {{ leader.athlete.lastname }}</strong></p>
+            <p>Have won {{ leader.count }} cards in last {{ selectedDays }} days</p>
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +39,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-12 mb-3" *ngFor="let fastCard of fastCards">
+    <div class="col-sm-12 col-12 mb-3" *ngFor="let fastCard of fastSubject|async">
       <div class="card" *ngIf="fastCard.entries.length > 0">
         <div class="card-header">
           <b>{{ fastCard.name }}</b>
@@ -53,7 +55,7 @@
                   {{ entry.user.firstname }} {{ entry.user.lastname }}
                 </div>
                 <div class="col-sm-2 col-4">
-                  <small>{{ entry.activity.start_date_local|date:"dd MMM HH:mm" }}</small>
+                  <small>{{ entry.activity.start_date_local }}</small>
                 </div>
                 <div class="col-sm-2 col-4">
                   <small>{{ entry.distance|distance }}</small>
@@ -77,7 +79,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-12 mb-3" *ngFor="let highCard of highCards">
+    <div class="col-sm-12 col-12 mb-3" *ngFor="let highCard of highSubject|async">
       <div class="card" *ngIf="highCard.entries.length > 0">
         <div class="card-header">
           <b>{{ highCard.name }}</b>
@@ -93,7 +95,7 @@
                   {{ entry.athlete.firstname }} {{ entry.athlete.lastname }}
                 </div>
                 <div class="col-sm-2 col-4">
-                  <small>{{ entry.start_date_local|date:"dd MMM HH:mm" }}</small>
+                  <small>{{ entry.start_date_local }}</small>
                 </div>
                 <div class="col-sm-4 col-4" *ngIf="highCard.type == 'longest-run'">
                   <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
@@ -124,7 +126,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-12 mb-3" *ngFor="let overallCard of overallCards">
+    <div class="col-sm-12 col-12 mb-3" *ngFor="let overallCard of overallSubject|async">
       <div class="card" *ngIf="overallCard.entries.length > 0">
         <div class="card-header">
           <b>{{ overallCard.name }}</b>
