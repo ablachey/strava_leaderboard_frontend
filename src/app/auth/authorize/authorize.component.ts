@@ -45,7 +45,7 @@ export class AuthorizeComponent implements OnInit {
           this.authService.isLoggedIn = true;
           this.alertService.clear();
         }
-
+        console.log(this.authService.isLoggedIn);
         this.authService.getUserFromServer().subscribe(
           userData => {
             let user = userData.data as User;

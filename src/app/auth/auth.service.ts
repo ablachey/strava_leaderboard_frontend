@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AlertService } from '../shared/alert/alert.service';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -19,10 +18,9 @@ export class AuthService {
   redirectUrl: string;
   baseUrl = environment.apiBase + 'auth/';
 
-  constructor(private http: HttpClient, private alertService: AlertService, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   authenticate(code: string): Observable<any> {
-    this.alertService.clear();
     let url = this.baseUrl + 'authenticate';
     return this.http.post<any>(url, JSON.stringify({code: code}), httpOptions);
   }
@@ -62,7 +60,6 @@ export class AuthService {
   }
 
   logout(): void {
-    this.alertService.clear();
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
     this.isLoggedIn = false;
@@ -70,12 +67,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<string> {
-    let url = this.baseUrl + 'refresh';
-    
+    let url = this.baseUrl + 'refresh'; 
     return this.http.post<string>(url, []);
-  }
-
-  loadingStart() {
-    this.alertService.loadingStart();
   }
 }

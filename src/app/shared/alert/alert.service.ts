@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable()
 export class AlertService {
@@ -9,7 +10,7 @@ export class AlertService {
 
   isLoading: boolean = false;
 
-  constructor(private router?: Router) { }
+  constructor(private authService: AuthService) { }
 
   addSuccessMessage(message: string): void {
     this.messagesSuccess.push(message);
@@ -52,12 +53,11 @@ export class AlertService {
         else {
           this.addDangerMessage('Authentication error, please authorize to continue!');
         }
-
-        setTimeout(() => { this.router.navigate(['/auth']) }, 3000);
+        setTimeout(() => { this.authService.logout() }, 3000);
       }
       else if(e.status == 401) {
         this.addDangerMessage('Your session has expired, please authorize to continue!');
-        setTimeout(() => { this.router.navigate(['/auth']) }, 3000);
+        setTimeout(() => { this.authService.logout() }, 3000);
       }
       else if(e.status == 403) {
         this.addDangerMessage('Forbidden, please check your credentials');

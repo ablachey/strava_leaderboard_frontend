@@ -24,13 +24,14 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 import { environment } from '../../environments/environment';
+import { AlertService } from '../shared/alert/alert.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   isRefreshingToken: boolean = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public alertService: AlertService) { }
 
   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
     let headers = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
@@ -46,7 +47,7 @@ export class TokenInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
     if(req.url !== syncUrl) {
-      this.authService.loadingStart();
+      this.alertService.loadingStart();
     }
     
     return next.handle(this.addToken(req, this.authService.getCurrentUserToken()))
