@@ -9,6 +9,7 @@ import { User } from '../../auth/user';
 import { Activity } from './activity';
 import { OverallCard } from './overall-card';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { environment } from '../../../environments/environment';
 
 class LD {
   athlete: User;
@@ -75,6 +76,7 @@ export class CardComponent implements OnInit {
   fastSubject: BehaviorSubject<FC[]> = new BehaviorSubject(null);
   highSubject: BehaviorSubject<HC[]> = new BehaviorSubject(null);
   overallSubject: BehaviorSubject<OC[]> = new BehaviorSubject(null);
+  stravaActivityUrl: string = environment.stravaActivityUrl;
   
 
   constructor(public alertService: AlertService, public cardService: CardService, public route: ActivatedRoute, public boardService: BoardService) { }

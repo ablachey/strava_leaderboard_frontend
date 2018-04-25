@@ -47,25 +47,27 @@
         <div class="card-body p-0">
           <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngFor="let entry of fastCard.entries; let i = index">
-              <div class="row">
-                <div class="col-sm-2 col-3">
-                  <img class="card-img" src="{{ entry.user.image.medium }}">
+              <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.activity.strava_id}}" target="_blank">
+                <div class="row">
+                  <div class="col-sm-2 col-3">
+                    <img class="card-img" src="{{ entry.user.image.medium }}">
+                  </div>
+                  <div class="col-sm-4 col-9">
+                    {{ entry.user.firstname }} {{ entry.user.lastname }}
+                  </div>
+                  <div class="col-sm-2 col-4">
+                    <small>{{ entry.activity.start_date_local }}</small>
+                  </div>
+                  <div class="col-sm-2 col-4">
+                    <small>{{ entry.distance|distance }}</small>
+                  </div>
+                  <div class="col-sm-2 col-4">
+                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                      {{ entry.elapsed_time|time }}
+                    </span>
+                  </div>
                 </div>
-                <div class="col-sm-4 col-9">
-                  {{ entry.user.firstname }} {{ entry.user.lastname }}
-                </div>
-                <div class="col-sm-2 col-4">
-                  <small>{{ entry.activity.start_date_local }}</small>
-                </div>
-                <div class="col-sm-2 col-4">
-                  <small>{{ entry.distance|distance }}</small>
-                </div>
-                <div class="col-sm-2 col-4">
-                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.elapsed_time|time }}
-                  </span>
-                </div>
-              </div>
+              </a>
             </li>
           </ul>
         </div>
@@ -87,32 +89,34 @@
         <div class="card-body p-0">
           <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngFor="let entry of highCard.entries; let i = index">
-              <div class="row">
-                <div class="col-sm-2 col-3">
-                  <img class="card-img" src="{{ entry.athlete.image.medium }}">
+              <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.strava_id}}" target="_blank">
+                <div class="row">
+                  <div class="col-sm-2 col-3">
+                    <img class="card-img" src="{{ entry.athlete.image.medium }}">
+                  </div>
+                  <div class="col-sm-4 col-9">
+                    {{ entry.athlete.firstname }} {{ entry.athlete.lastname }}
+                  </div>
+                  <div class="col-sm-2 col-4">
+                    <small>{{ entry.start_date_local }}</small>
+                  </div>
+                  <div class="col-sm-4 col-4" *ngIf="highCard.type == 'longest-run'">
+                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                      {{ entry.elapsed_time|time }}
+                    </span>
+                  </div>
+                  <div class="col-sm-4 col-4" *ngIf="highCard.type == 'furthest-run'">
+                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                      {{ entry.distance|distance }}
+                    </span>
+                  </div>
+                  <div class="col-sm-4 col-4" *ngIf="highCard.type == 'max-calories'">
+                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                      {{ entry.calories }} Calories
+                    </span>
+                  </div>
                 </div>
-                <div class="col-sm-4 col-9">
-                  {{ entry.athlete.firstname }} {{ entry.athlete.lastname }}
-                </div>
-                <div class="col-sm-2 col-4">
-                  <small>{{ entry.start_date_local }}</small>
-                </div>
-                <div class="col-sm-4 col-4" *ngIf="highCard.type == 'longest-run'">
-                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.elapsed_time|time }}
-                  </span>
-                </div>
-                <div class="col-sm-4 col-4" *ngIf="highCard.type == 'furthest-run'">
-                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.distance|distance }}
-                  </span>
-                </div>
-                <div class="col-sm-4 col-4" *ngIf="highCard.type == 'max-calories'">
-                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.calories }} Calories
-                  </span>
-                </div>
-              </div>
+              </a>
             </li>
           </ul>
         </div>

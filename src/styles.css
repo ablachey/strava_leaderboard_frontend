@@ -94,3 +94,15 @@ h2 {
   text-decoration: none;
   color: #fff;
 }
+
+.activity-link {
+  color: #000;
+}
+
+.activity-link:hover {
+  color: #000;
+}
+
+.activity-link:active {
+  color: #000;
+}
