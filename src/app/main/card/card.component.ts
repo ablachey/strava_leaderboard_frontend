@@ -88,9 +88,17 @@ export class CardComponent implements OnInit {
         this.boardName = this.selectedBoard.name;
         this.alertService.loadingStop();
 
-        this.loadFastCards();
-        this.loadHighCards();
-        this.loadOverallCards();
+        this.boardService.syncBoard(this.selectedBoard).subscribe(
+          () => {
+            this.loadFastCards();
+            this.loadHighCards();
+            this.loadOverallCards();
+          },
+          e => {
+            this.alertService.handleErrors(e);
+            this.alertService.loadingStop();
+          }
+        );
       },
       e => {
         this.alertService.handleErrors(e);
