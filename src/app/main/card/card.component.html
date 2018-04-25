@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-sm-2 col-4">
                   <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.moving_time|time }}
+                    {{ entry.elapsed_time|time }}
                   </span>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-sm-4 col-4" *ngIf="highCard.type == 'longest-run'">
                   <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.moving_time|time }}
+                    {{ entry.elapsed_time|time }}
                   </span>
                 </div>
                 <div class="col-sm-4 col-4" *ngIf="highCard.type == 'furthest-run'">
