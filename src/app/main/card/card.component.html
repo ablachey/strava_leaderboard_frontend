@@ -50,10 +50,10 @@
               <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.activity.strava_id}}" target="_blank">
                 <div class="row">
                   <div class="col-sm-2 col-3">
-                    <img class="card-img" src="{{ entry.user.image.medium }}">
+                    <img class="card-img" src="{{ entry.activity.athlete.image.medium }}">
                   </div>
                   <div class="col-sm-4 col-9">
-                    {{ entry.user.firstname }} {{ entry.user.lastname }}
+                    {{ entry.activity.athlete.firstname }} {{ entry.activity.athlete.lastname }}
                   </div>
                   <div class="col-sm-2 col-4">
                     <small>{{ entry.activity.start_date_local }}</small>

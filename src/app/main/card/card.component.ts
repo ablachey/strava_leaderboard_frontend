@@ -166,7 +166,7 @@ export class CardComponent implements OnInit {
         res => {
           this.fastCards[i].entries = res.data as FastCard[];
           if(this.fastCards[i].entries.length > 0) {
-            this.processLeader(this.fastCards[i].entries[0].user);
+            this.processLeader(this.fastCards[i].entries[0].activity.athlete);
           }
           this.alertService.loadingStop();
           this.fastSubject.next(this.fastCards);
