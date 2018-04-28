@@ -6,6 +6,8 @@ import { BoardModule } from './board/board.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CardModule } from './card/card.module';
 import { AuthGuardService } from '../shared/guards/auth-guard.service';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { AuthGuardService } from '../shared/guards/auth-guard.service';
     MainRoutingModule,
     BoardModule,
     AngularFontAwesomeModule,
-    CardModule
+    CardModule,
+    DashboardModule,
+    ProfileModule
   ],
   declarations: [MainComponent],
   providers: [AuthGuardService]

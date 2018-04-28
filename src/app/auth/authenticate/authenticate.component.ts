@@ -21,7 +21,7 @@ export class AuthenticateComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.loggedInStatusCheck()) {
-      this.router.navigate(['/boards']);
+      this.router.navigate(['/dashboard/profile']);
     }
     this.authPageMsg = `
       Strava Leaderboard allows you to compare your best efforts, with your friends. Compare your efforts through a set of timeframes.
