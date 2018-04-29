@@ -112,7 +112,7 @@
                   </div>
                   <div class="col-sm-4 col-4" *ngIf="highCard.type == 'max-calories'">
                     <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                      {{ entry.calories }} Calories
+                      {{ entry.calories | calorie }} Calories
                     </span>
                   </div>
                 </div>

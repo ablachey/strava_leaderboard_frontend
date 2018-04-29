@@ -1,3 +1,3 @@
 export class User {
-  constructor(public id?:number, public strava_id?: number, firstname?: string, lastname?: string, email?:string, image?: {medium: string, large: string}) {}
+  constructor(public id?:number, public strava_id?: number, public firstname?: string, public lastname?: string, public email?:string, public image?: {medium: string, large: string}) {}
 }

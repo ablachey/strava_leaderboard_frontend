@@ -61,7 +61,7 @@
               </li>
             </ul>
             <div class="col-sm-12 text-center" *ngIf="board.active;else awaitingApproval">
-              <a [routerLink]="['../board', board.id, 'cards']" class="btn btn-success mt-4">View</a>
+              <a [routerLink]="['/board', board.id, 'cards']" class="btn btn-success mt-4">View</a>
             </div>
             <ng-template #awaitingApproval>
               <div class="col-sm-12 text-center">

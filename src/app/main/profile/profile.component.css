@@ -1,0 +1,13 @@
+.profile-accu {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(68, 185, 23, 0.5);
+  margin: 0 auto;
+}
+
+.accu-val {
+  margin-top: 40px;  
+}
