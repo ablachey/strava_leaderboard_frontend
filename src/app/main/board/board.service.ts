@@ -11,16 +11,6 @@ export class BoardService {
 
   constructor(private http: HttpClient) { }
 
-  sync(): Observable<any> {
-    let url = environment.apiBase + 'activities/sync';
-    return this.http.post<any>(url, []);
-  }
-
-  syncBoard(board: Board): Observable<any> {
-    let url = environment.apiBase + 'activities/sync/board/' + board.id;
-    return this.http.post(url, []);
-  }
-
   getBoards(): Observable<any> {
     return this.http.get<Board[]>(this.baseUrl);
   }

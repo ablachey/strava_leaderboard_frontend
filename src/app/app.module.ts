@@ -14,6 +14,7 @@ import { MainModule } from './main/main.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token-interceptor';
+import { ActivityService } from './shared/services/activity.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { TokenInterceptor } from './auth/token-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    ActivityService
   ],
   bootstrap: [AppComponent]
 })

@@ -9,6 +9,7 @@ import { User } from '../../auth/user';
 import { Activity } from './activity';
 import { OverallCard } from './overall-card';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ActivityService } from '../../shared/services/activity.service';
 import { environment } from '../../../environments/environment';
 
 class LD {
@@ -79,7 +80,7 @@ export class CardComponent implements OnInit {
   stravaActivityUrl: string = environment.stravaActivityUrl;
   
 
-  constructor(public alertService: AlertService, public cardService: CardService, public route: ActivatedRoute, public boardService: BoardService) { }
+  constructor(public activityService: ActivityService, public alertService: AlertService, public cardService: CardService, public route: ActivatedRoute, public boardService: BoardService) { }
 
   ngOnInit() {
     let selectedBoardId = this.route.snapshot.params.id;
@@ -90,7 +91,7 @@ export class CardComponent implements OnInit {
         this.boardName = this.selectedBoard.name;
         this.alertService.loadingStop();
 
-        this.boardService.syncBoard(this.selectedBoard).subscribe(
+        this.activityService.syncBoard(this.selectedBoard).subscribe(
           () => {
             this.loadFastCards();
             this.loadHighCards();

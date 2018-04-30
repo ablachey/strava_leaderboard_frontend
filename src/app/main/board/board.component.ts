@@ -101,14 +101,6 @@ export class BoardComponent implements OnInit {
       b => {
         this.boards = b.data as Board[];
         this.alertService.loadingStop();
-        this.boardService.sync().subscribe(
-          r => {
-            this.alertService.loadingStop();
-          },
-          e => {
-            this.alertService.handleErrors(e);
-          }
-        );
       },
       e => {
         this.alertService.handleErrors(e);
