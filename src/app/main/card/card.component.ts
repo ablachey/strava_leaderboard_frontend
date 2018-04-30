@@ -94,8 +94,9 @@ export class CardComponent implements OnInit {
         this.activityService.syncBoard(this.selectedBoard).subscribe(
           () => {
             this.loadFastCards();
-            this.loadHighCards();
-            this.loadOverallCards();
+            /*this.loadHighCards();
+            this.loadOverallCards();*/
+            this.alertService.loadingStop();
           },
           e => {
             this.alertService.handleErrors(e);
@@ -115,8 +116,6 @@ export class CardComponent implements OnInit {
       this.resetLeader();
       this.selectedDays = days;
       this.loadFastCards();
-      this.loadHighCards();
-      this.loadOverallCards();
     }
   }
 
@@ -179,6 +178,9 @@ export class CardComponent implements OnInit {
         }
       );
     }
+    else {
+      this.loadHighCards();
+    }
   }
 
   lhc(i: number) {
@@ -199,6 +201,9 @@ export class CardComponent implements OnInit {
           this.alertService.loadingStop();
         }
       );
+    }
+    else {
+      this.loadOverallCards();
     }
   }
 

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { Title } from '@angular/platform-browser';
-import { ActivityService } from '../shared/services/activity.service';
-import { AlertService } from '../shared/alert/alert.service';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -15,7 +13,7 @@ export class MainComponent implements OnInit {
   public title: string;
   public titleBase: string = environment.titleBase;
 
-  constructor(public alertService: AlertService, public activityService: ActivityService, public authService: AuthService, public router: Router, public activatedRoute: ActivatedRoute, public titleService: Title) {
+  constructor(public authService: AuthService, public router: Router, public activatedRoute: ActivatedRoute, public titleService: Title) {
     this.title = this.titleBase; 
 
     this.router.events.subscribe(e => {
@@ -28,15 +26,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activityService.sync().subscribe(
-      r => {
-        this.alertService.loadingStop();
-      },
-      e => {
-        this.alertService.handleErrors(e);
-        this.alertService.loadingStop();
-      }
-    );
+    
   }
 
   logout() {

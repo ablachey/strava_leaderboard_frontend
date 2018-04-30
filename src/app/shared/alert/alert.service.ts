@@ -72,12 +72,12 @@ export class AlertService {
           this.addDangerMessage('Could not connect to Strava');
         }
         else {
-          this.addDangerMessage('There was an error');
+          this.addDangerMessage('There was an error: ' + e.error.message);
         }
         setTimeout(() => { this.clear() }, 3000);
       }
       else {
-        this.addDangerMessage('There was an error: ' + e.message);
+        this.addDangerMessage('There was an error: ' + e.error.message);
         setTimeout(() => { this.clear() }, 3000);
       }
     }
