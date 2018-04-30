@@ -124,7 +124,7 @@ export class ProfileComponent implements OnInit {
         u => {
           this.user = u;
           this.userId = this.user.id;
-          this.getData();
+          this.getTop();
         },
         e => {
           this.alertService.handleLocalErrors(e);
@@ -138,7 +138,7 @@ export class ProfileComponent implements OnInit {
         res => {
           this.user = res.data as User;
           this.alertService.loadingStop();
-          this.getData();
+          this.getTop();
         },
         e => {
           this.alertService.handleErrors(e);
@@ -148,18 +148,19 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getData() {
+  /*getData() {
     this.getTop();
     this.getMonthTime();
     this.getMonthDistance();
     this.getEfforts(this.effortTypes[0]);
-  }
+  }*/
 
   getTop() {
     this.profileService.getAccumulated(this.userId).subscribe(
       res => {
         this.topData = res.data as TOP;
         this.alertService.loadingStop();
+        this.getMonthTime();
       },
       e => {
         this.alertService.handleErrors(e);
@@ -211,6 +212,7 @@ export class ProfileComponent implements OnInit {
         this.monthTimeChartData = md;
         
         this.alertService.loadingStop();
+        this.getMonthDistance();
       },
       e => {
         this.alertService.handleErrors(e);
@@ -259,6 +261,7 @@ export class ProfileComponent implements OnInit {
         this.monthDistanceChartData = md;
         
         this.alertService.loadingStop();
+        this.getEfforts(this.effortTypes[0]);
       },
       e => {
         this.alertService.handleErrors(e);
