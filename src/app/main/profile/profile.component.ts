@@ -103,16 +103,16 @@ export class ProfileComponent implements OnInit {
   effortChartOptions:any = null;
   effortChartColors:Array<any> = [
     {
-      backgroundColor: 'rgba(155, 178, 48, 0.2)',
-      borderColor: 'rgba(155, 178, 48, 1)',
-      pointBackgroundColor: 'rgba(155, 178, 48, 1)',
+      backgroundColor: 'rgba(47, 197, 224, 0.4)',
+      borderColor: 'rgba(47, 197, 224, 1)',
+      pointBackgroundColor: 'rgba(47, 197, 224, 1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(155, 178, 48, 0.8)'
+      pointHoverBorderColor: 'rgba(47, 197, 224, 0.8)'
     }
   ];
   effortChartLegend:boolean = false;
-  effortChartType:string = 'line';
+  effortChartType:string = 'bar';
 
   constructor(public profileService: ProfileService, public alertService: AlertService, public authService: AuthService, public router: Router, public route: ActivatedRoute) { }
 
@@ -184,6 +184,11 @@ export class ProfileComponent implements OnInit {
                 },
                 beginAtZero: true
               }
+            }],
+            xAxes: [{
+              gridLines: {
+                drawOnChartArea: false
+              }
             }]
           },
           tooltips: {
@@ -234,6 +239,11 @@ export class ProfileComponent implements OnInit {
                   return new DistancePipe().transform(value);
                 },
                 beginAtZero: true
+              }
+            }],
+            xAxes: [{
+              gridLines: {
+                drawOnChartArea: false
               }
             }]
           },
@@ -287,6 +297,11 @@ export class ProfileComponent implements OnInit {
                   return new TimePipe().transform(value);
                 },
                 beginAtZero: true
+              }
+            }],
+            xAxes: [{
+              gridLines: {
+                drawOnChartArea: false
               }
             }]
           },
