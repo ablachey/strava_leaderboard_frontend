@@ -5,15 +5,14 @@
     </div>
   </div>
   <div class="row"  *ngIf="user">
-    <div class="col-lg-2 col-md-2 col-sm-12 mb-3 col-12 text-center">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-3">
       <img [src]="user.image.large" class="profile-img">
     </div>
-    <div class="col-lg-10 col-md-10 col-sm-12 mb-3 col-12 text-center">
-      <ul class="list-group">
-        <li class="list-group-item"><h3>{{ user.firstname }} {{ user.lastname }}</h3></li>
-      </ul>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-9 pt-3 card profile-name card-success">
+      <span><b>{{ user.firstname }} {{ user.lastname }}</b></span>
     </div>
   </div>
+  <br/>
   <div class="row">
     <div class="col-sm-12 pt-3 pb-0">
       <h4>Month To Date</h4>
