@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token-interceptor';
 import { ActivityService } from './shared/services/activity.service';
+import { ConfirmModalComponent } from './shared/components/confirm-modal.component';
+import { ModalModule } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { ActivityService } from './shared/services/activity.service';
     AuthComponent,
     AuthenticateComponent,
     AuthorizeComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { ActivityService } from './shared/services/activity.service';
     AlertModule,
     HttpClientModule,
     MainModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -39,8 +44,10 @@ import { ActivityService } from './shared/services/activity.service';
       useClass: TokenInterceptor,
       multi: true
     },
-    ActivityService
+    ActivityService,
+    BsModalService
   ],
+  entryComponents: [ConfirmModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

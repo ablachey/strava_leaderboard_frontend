@@ -47,6 +47,7 @@
         <div class="card">
           <div class="card-header">
             {{ board.name }}
+            <span class="pull-right del" *ngIf="board.admin" (click)="boardDelete(board)"><fa name="times"></fa></span>
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">

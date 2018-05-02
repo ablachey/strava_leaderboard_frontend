@@ -5,10 +5,10 @@
     </div>
   </div>
   <div class="row"  *ngIf="user">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-3">
+    <div class="col-lg-1 col-md-1 col-sm-3 col-3">
       <img [src]="user.image.large" class="profile-img">
     </div>
-    <div class="col-lg-5 col-md-5 col-sm-5 col-9 pt-3 card profile-name card-success">
+    <div class="col-lg-5 col-md-5 col-sm-9 col-9 pt-3 card profile-name card-success">
       <span><b>{{ user.firstname }} {{ user.lastname }}</b></span>
     </div>
   </div>

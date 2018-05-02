@@ -38,4 +38,9 @@ export class BoardService {
   addBoard(name: string): Observable<any> {
     return this.http.post<any>(this.baseUrl, JSON.stringify({name: name}));
   }
+
+  deleteBoard(board: Board): Observable<any> {
+    let url = this.baseUrl + board.id;
+    return this.http.delete<any>(url);
+  }
 }

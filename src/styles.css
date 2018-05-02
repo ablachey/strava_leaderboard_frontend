@@ -106,3 +106,7 @@ h2 {
 .activity-link:active {
   color: #000;
 }
+
+.del:hover {
+  cursor: pointer;
+}

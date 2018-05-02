@@ -3,6 +3,8 @@ import { AlertService } from '../../shared/alert/alert.service';
 import { BoardService } from './board.service';
 import { Board } from './board';
 import { BoardSearch } from './board-search';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ConfirmModalComponent } from '../../shared/components/confirm-modal.component';
 
 @Component({
   selector: 'app-board',
@@ -25,8 +27,9 @@ export class BoardComponent implements OnInit {
   public boardName: string;
   public boards: Board[] = [];
   public searchBoards: BoardSearch[] = [];
+  public modalRef: BsModalRef;
 
-  constructor(public alertService: AlertService, public boardService: BoardService) { }
+  constructor(public modalService: BsModalService, public alertService: AlertService, public boardService: BoardService) { }
 
   ngOnInit() {
     this.loadBoards();
@@ -109,4 +112,31 @@ export class BoardComponent implements OnInit {
     );
   }
 
+  boardDelete(board: Board) {
+    this.modalRef = this.modalService.show(ConfirmModalComponent);
+    this.modalRef.content.title = 'Confirm Board Delete';
+    this.modalRef.content.body = 'Are you sure you want to delete the board: ' + board.name;
+
+    this.modalRef.content.cState.subscribe(
+      status => {
+        this.boardService.deleteBoard(board).subscribe(
+          () => {
+            this.boards = this.boards.filter(b => b != board);
+            this.modalRef.hide();
+            this.alertService.loadingStop();
+          },
+          err => {
+            this.modalRef.hide();
+            this.alertService.handleErrors(err);
+            this.alertService.loadingStop();
+          }
+        );
+      },
+      e => {
+        this.modalRef.hide();
+        this.alertService.handleErrors(e);
+        this.alertService.loadingStop();
+      }
+    );
+  }
 }
