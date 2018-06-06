@@ -91,18 +91,20 @@ export class CardComponent implements OnInit {
         this.boardName = this.selectedBoard.name;
         this.alertService.loadingStop();
 
-        this.activityService.syncBoard(this.selectedBoard).subscribe(
+        this.loadFastCards();
+        this.alertService.loadingStop();
+        
+        //REMOVED AFTER WEBHOOK IMPLEMENTATION
+        /*this.activityService.syncBoard(this.selectedBoard).subscribe(
           () => {
             this.loadFastCards();
-            /*this.loadHighCards();
-            this.loadOverallCards();*/
             this.alertService.loadingStop();
           },
           e => {
             this.alertService.handleErrors(e);
             this.alertService.loadingStop();
           }
-        );
+        );*/
       },
       e => {
         this.alertService.handleErrors(e);
