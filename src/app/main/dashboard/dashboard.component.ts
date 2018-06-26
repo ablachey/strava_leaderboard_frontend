@@ -14,22 +14,22 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     let curSeg = this.router.url;
     
-    if(curSeg === '/dashboard/profile') {
+    /*if(curSeg === '/dashboard/profile') {
       this.profileActive = true;
     }
     else {
       this.profileActive = false;
-    }
+    }*/
   }
 
   goToProfile() {
     this.profileActive = true;
-    this.router.navigate(['/dashboard/profile']);
+    //this.router.navigate(['/dashboard/profile']);
   }
 
   goToBoards() {
     this.profileActive = false;
-    this.router.navigate(['/dashboard/boards']);
+    //this.router.navigate(['/dashboard/boards']);
   }
 
 }

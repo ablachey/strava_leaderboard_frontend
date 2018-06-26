@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service'
 import { User } from '../../auth/user';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ProfileService } from './profile.service';
 import { AlertService } from '../../shared/alert/alert.service';
 import { TimePipe } from '../../shared/pipes/time.pipe';

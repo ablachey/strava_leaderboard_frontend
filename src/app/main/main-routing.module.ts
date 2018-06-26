@@ -14,14 +14,7 @@ const mainRoutes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
-          {
-            path: 'boards', component: BoardComponent, data: {title: 'Boards'} 
-          },
-          {
-            path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
-          }
-        ]
+        path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
       },
       {
         path: 'profiles/:id', component: ProfileComponent, data: {title: 'Profile'}
@@ -30,9 +23,9 @@ const mainRoutes: Routes = [
         path: 'board/:id/cards', component: CardComponent, data: {title: 'Cards'} 
       },
       {
-        path: '', redirectTo: '/dashboard/profile', pathMatch: 'full'
+        path: '', redirectTo: '/profile', pathMatch: 'full'
       },
-      { path: '**', redirectTo: '/dashboard/profile', pathMatch: 'full'}
+      { path: '**', redirectTo: '/profile', pathMatch: 'full'}
     ]
   }
 ];

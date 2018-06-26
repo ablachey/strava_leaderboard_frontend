@@ -102,3 +102,7 @@ body {
 .del:hover {
   cursor: pointer;
 }
+
+.gen-link:hover {
+  cursor: pointer;
+}
