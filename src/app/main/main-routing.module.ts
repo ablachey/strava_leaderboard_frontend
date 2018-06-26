@@ -6,6 +6,8 @@ import { CardComponent } from './card/card.component';
 import { AuthGuardService } from '../shared/guards/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BoardJoinComponent } from './board/board-join/board-join.component';
+import { BoardMyComponent } from './board/board-my/board-my.component';
 
 const mainRoutes: Routes = [
   {
@@ -17,13 +19,23 @@ const mainRoutes: Routes = [
         path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
       },
       {
-        path: 'boards', component: BoardComponent, data: {title: 'Boards'}
+        path: 'boards', component: BoardComponent, data: {title: 'Boards'}, children: [
+          {
+            path: 'join', component: BoardJoinComponent, data: {title: 'Join'}
+          },
+          {
+            path: 'my', component: BoardMyComponent, data: {title: 'My Boards'}
+          },
+          {
+            path: '', redirectTo: 'my', pathMatch: 'full'
+          },
+        ]
       },
       /*{
         path: 'profiles/:id', component: ProfileComponent, data: {title: 'Profile'}
       },*/
       {
-        path: 'board/:id/cards', component: CardComponent, data: {title: 'Cards'} 
+        path: 'boards/:id/cards', component: CardComponent, data: {title: 'Cards'} 
       },
       {
         path: '', redirectTo: '/profile', pathMatch: 'full'

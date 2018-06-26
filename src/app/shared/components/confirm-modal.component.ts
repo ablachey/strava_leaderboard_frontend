@@ -17,7 +17,7 @@ import { Subject } from 'rxjs/Subject';
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" (click)="bsModalRef.hide()">Cancel</button>
-        <button class="btn btn-success" (click)="confirmed($event)">Confirm</button>
+        <button class="btn btn-primary" (click)="confirmed($event)">Confirm</button>
       </div>
     </div>
   `,

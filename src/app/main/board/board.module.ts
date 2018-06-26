@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { BoardService } from './board.service';
 import { AlertModule } from '../../shared/alert/alert.module';
 import { RouterModule } from '@angular/router';
+import { BoardJoinComponent } from './board-join/board-join.component';
+import { BoardMyComponent } from './board-my/board-my.component';
 
 @NgModule({
   imports: [
@@ -15,7 +17,7 @@ import { RouterModule } from '@angular/router';
     AlertModule,
     RouterModule
   ],
-  declarations: [BoardComponent],
+  declarations: [BoardComponent, BoardJoinComponent, BoardMyComponent],
   providers: [BoardService]
 })
 export class BoardModule { }

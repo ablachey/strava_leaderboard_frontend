@@ -28,8 +28,8 @@
       <li [class]="(activeLink === 'boards') ? 'active' : ''">
         <a class="gen-link collapsed" (click)="expandBoards()" [attr.aria-expanded]="boardsExpanded" data-toggle="collapse"> <fa name="list-ul"></fa>Boards </a>
         <ul id="exampledropdownDropdown" class="collapse list-unstyled {{ (boardsExpanded) ? 'show' : ''}}">
-          <li><a href="#">Join</a></li>
-          <li><a href="#">My Boards</a></li>
+          <li [class]="(activeSubLink === 'join') ? 'active' : ''"><a routerLink="/boards/join">Join</a></li>
+          <li [class]="(activeSubLink === 'my') ? 'active' : ''"><a routerLink="/boards/my">My Boards</a></li>
         </ul>
       </li>
       <li><a href="#"> <fa name="trophy"></fa>PR Showcase </a></li>
@@ -47,7 +47,7 @@
     <footer class="footer">
       <div class="footer__block block no-margin-bottom">
         <div class="container-fluid text-center">
-          <p class="no-margin-bottom">2018 &copy; Clay Apps. Powered by <a href="https://www.strava.com">Strava</a>.</p>
+          <p class="no-margin-bottom">{{ now | date: "y" }} &copy; Clay Apps. Powered by <a href="https://www.strava.com">Strava</a>.</p>
         </div>
       </div>
     </footer>

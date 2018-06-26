@@ -17,33 +17,42 @@ export class MainComponent implements OnInit {
   user: User = null;
   shrinked: boolean = false;
   boardsExpanded: boolean = false;
-  activeLink: string = 'profile';
+  activeLink: string = '';
+  activeSubLink: string = '';
+  now: number = null;
 
   constructor(public alertService: AlertService, public authService: AuthService, public router: Router, public activatedRoute: ActivatedRoute, public titleService: Title) {
     this.title = this.titleBase; 
 
     this.router.events.subscribe(e => {
+      this.activeLink = '';
+      this.activeSubLink = '';
+
       if(e instanceof NavigationEnd) {
         this.title = this.getTitle(this.router.routerState, this.router.routerState.root).join(' - ');
 
         this.titleService.setTitle(this.titleBase + ' | ' + this.title);
       }
 
-      this.activatedRoute.url.subscribe(
-        () => {
-          this.activeLink = this.activatedRoute.snapshot.firstChild.url[0].path;
-          if(this.activeLink === 'boards') {
-            this.boardsExpanded = true;
-          }
-          else {
-            this.boardsExpanded = false;
-          }
-        }
-      );
+      let activeUrl = this.router.url;
+      let segs = activeUrl.split('/');
+
+      this.activeLink = segs[1];
+      if(this.activeLink === 'boards') {
+        this.boardsExpanded = true;
+      }
+      else {
+        this.boardsExpanded = false;
+      }
+
+      if(segs.length === 3) {
+        this.activeSubLink = segs[2];
+      }
     });
   }
 
   ngOnInit() {
+    this.now = Date.now();
     this.authService.getLocalUser().subscribe(
       u => {
         this.user = u;
