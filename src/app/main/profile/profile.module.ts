@@ -5,13 +5,15 @@ import { ProfileService } from './profile.service';
 import { AlertModule } from '../../shared/alert/alert.module';
 import { PiperModule } from '../../shared/pipes/piper.module';
 import { ChartsModule } from 'ng2-charts';
+import { AngularFontAwesomeModule } from 'angular-font-awesome'; 
 
 @NgModule({
   imports: [
     CommonModule,
     AlertModule,
     PiperModule,
-    ChartsModule
+    ChartsModule,
+    AngularFontAwesomeModule
   ],
   declarations: [ProfileComponent],
   providers: [ProfileService]
