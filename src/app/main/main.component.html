@@ -20,12 +20,13 @@
       <div class="avatar"><img [src]="user.image.large" alt="..." class="img-fluid rounded-circle"></div>
       <div class="title">
         <h1 class="h5">{{ user.firstname }} {{ user.lastname }}</h1>
-        <p>Athlete</p>
+        <p>Active Athlete</p>
       </div>
     </div>
     <ul class="list-unstyled">
-      <li [class]="(activeLink === 'profile') ? 'active' : ''"><a href="#"> <fa name="user"></fa>Profile </a></li>
-      <li><a class="gen-link collapsed" (click)="expandBoards()" [attr.aria-expanded]="boardsExpanded" data-toggle="collapse"> <fa name="list-ul"></fa>Boards </a>
+      <li [class]="(activeLink === 'profile') ? 'active' : ''"><a routerLink="/profile"> <fa name="user"></fa>Profile </a></li>
+      <li [class]="(activeLink === 'boards') ? 'active' : ''">
+        <a class="gen-link collapsed" (click)="expandBoards()" [attr.aria-expanded]="boardsExpanded" data-toggle="collapse"> <fa name="list-ul"></fa>Boards </a>
         <ul id="exampledropdownDropdown" class="collapse list-unstyled {{ (boardsExpanded) ? 'show' : ''}}">
           <li><a href="#">Join</a></li>
           <li><a href="#">My Boards</a></li>
@@ -36,4 +37,19 @@
       <li><a href="#"> <i class="fa fa-bar-chart"></i>Annual Stats </a></li>
     </ul>
   </nav>
+  <div class="page-content {{ (shrinked) ? 'active' : '' }}">
+    <div class="page-header">
+      <div class="container-fluid">
+        <h2 class="h5 no-margin-bottom">{{ title }}</h2>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+    <footer class="footer">
+      <div class="footer__block block no-margin-bottom">
+        <div class="container-fluid text-center">
+          <p class="no-margin-bottom">2018 &copy; Clay Apps. Powered by <a href="https://www.strava.com">Strava</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </div>

@@ -28,13 +28,19 @@ export class MainComponent implements OnInit {
 
         this.titleService.setTitle(this.titleBase + ' | ' + this.title);
       }
-    });
 
-    this.activatedRoute.url.subscribe(
-      () => {
-        this.activeLink = this.activatedRoute.snapshot.firstChild.url[0].path;
-      }
-    );
+      this.activatedRoute.url.subscribe(
+        () => {
+          this.activeLink = this.activatedRoute.snapshot.firstChild.url[0].path;
+          if(this.activeLink === 'boards') {
+            this.boardsExpanded = true;
+          }
+          else {
+            this.boardsExpanded = false;
+          }
+        }
+      );
+    });
   }
 
   ngOnInit() {
@@ -80,6 +86,5 @@ export class MainComponent implements OnInit {
     else {
       this.boardsExpanded = true;
     }
-    console.log(this.boardsExpanded);
   }
 }

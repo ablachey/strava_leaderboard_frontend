@@ -17,8 +17,11 @@ const mainRoutes: Routes = [
         path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
       },
       {
-        path: 'profiles/:id', component: ProfileComponent, data: {title: 'Profile'}
+        path: 'boards', component: BoardComponent, data: {title: 'Boards'}
       },
+      /*{
+        path: 'profiles/:id', component: ProfileComponent, data: {title: 'Profile'}
+      },*/
       {
         path: 'board/:id/cards', component: CardComponent, data: {title: 'Cards'} 
       },

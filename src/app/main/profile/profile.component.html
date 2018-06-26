@@ -1,128 +1,130 @@
-<div class="container">
-  <div class="row pt-3">
-    <div class="col-sm-12">
-      <app-alert></app-alert>
-    </div>
-  </div>
-  <div class="row"  *ngIf="user">
-    <div class="col-lg-1 col-md-1 col-sm-3 col-3">
-      <img [src]="user.image.large" class="profile-img">
-    </div>
-    <div class="col-lg-5 col-md-5 col-sm-9 col-9 pt-3 card profile-name card-success">
-      <span><b>{{ user.firstname }} {{ user.lastname }}</b></span>
-    </div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-sm-12 pt-3 pb-0">
-      <h4>Month To Date</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="topData">
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6 justify-content-center">
-      <div class="col-sm-12 profile-accu text-center">
-        <h5 class="accu-val">{{ topData.count }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Activities
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row pt-3">
+      <div class="col-sm-12">
+        <app-alert></app-alert>
       </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
-      <div class="col-sm-12 profile-accu ">
-        <h5 class="accu-val">{{ topData.time | time }}</h5>
+    <div class="row"  *ngIf="user">
+      <div class="col-lg-1 col-md-1 col-sm-3 col-3">
+        <img [src]="user.image.large" class="profile-img">
       </div>
-      <div class="col-sm-12 text-center">
-        Time
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
-      <div class="col-sm-12 profile-accu ">
-        <h5 class="accu-val">{{ topData.distance | distance }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Distance
+      <div class="col-lg-5 col-md-5 col-sm-9 col-9 pt-3 card profile-name card-success">
+        <span><b>{{ user.firstname }} {{ user.lastname }}</b></span>
       </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
-      <div class="col-sm-12 profile-accu ">
-        <h5 class="accu-val">{{ topData.calories | calorie }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Calories
+    <br/>
+    <div class="row">
+      <div class="col-sm-12 pt-3 pb-0">
+        <h4>Month To Date</h4>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 pt-4 pb-0">
-      <h4>Last Month Comparison (Time)</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="monthTimeChartData">
-    <div class="col-sm-12">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="monthTimeChartData"
-                [labels]="monthTimeChartLabels"
-                [options]="monthTimeChartOptions"
-                [colors]="monthTimeChartColors"
-                [legend]="monthTimeChartLegend"
-                [chartType]="monthTimeChartType"
-                ></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 pt-4 pb-0">
-      <h4>Last Month Comparison (Distance)</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="monthDistanceChartData">
-    <div class="col-sm-12">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="monthDistanceChartData"
-                [labels]="monthDistanceChartLabels"
-                [options]="monthDistanceChartOptions"
-                [colors]="monthDistanceChartColors"
-                [legend]="monthDistanceChartLegend"
-                [chartType]="monthDistanceChartType"
-                ></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 pt-4 pb-0">
-      <h4>Best Effort Comparison</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-inline">
-          <div class="form-group mb-2">
-            <label class="mb-2 mr-sm-2" for="type"><h5>Efforts</h5></label>
-            <select class="form-control mb-2" id="type" #et (change)="effortChanged(et.value)">
-              <option *ngFor="let t of effortTypes; let i = index" [value]="i">{{t.name}}</option>
-            </select>
-          </div>
+    <hr>
+    <div class="row" *ngIf="topData">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 justify-content-center">
+        <div class="col-sm-12 profile-accu text-center">
+          <h5 class="accu-val">{{ topData.count }}</h5>
         </div>
+        <div class="col-sm-12 text-center">
+          Activities
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
+        <div class="col-sm-12 profile-accu ">
+          <h5 class="accu-val">{{ topData.time | time }}</h5>
+        </div>
+        <div class="col-sm-12 text-center">
+          Time
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
+        <div class="col-sm-12 profile-accu ">
+          <h5 class="accu-val">{{ topData.distance | distance }}</h5>
+        </div>
+        <div class="col-sm-12 text-center">
+          Distance
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
+        <div class="col-sm-12 profile-accu ">
+          <h5 class="accu-val">{{ topData.calories | calorie }}</h5>
+        </div>
+        <div class="col-sm-12 text-center">
+          Calories
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row" *ngIf="effortChartData">
-    <div class="col-sm-12">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="effortChartData"
-                [labels]="effortChartLabels"
-                [options]="effortChartOptions"
-                [colors]="effortChartColors"
-                [legend]="effortChartLegend"
-                [chartType]="effortChartType"
-                ></canvas>
+    <div class="row">
+      <div class="col-sm-12 pt-4 pb-0">
+        <h4>Last Month Comparison (Time)</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row" *ngIf="monthTimeChartData">
+      <div class="col-sm-12">
+        <div style="display: block;">
+          <canvas baseChart width="400" height="400"
+                  [datasets]="monthTimeChartData"
+                  [labels]="monthTimeChartLabels"
+                  [options]="monthTimeChartOptions"
+                  [colors]="monthTimeChartColors"
+                  [legend]="monthTimeChartLegend"
+                  [chartType]="monthTimeChartType"
+                  ></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 pt-4 pb-0">
+        <h4>Last Month Comparison (Distance)</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row" *ngIf="monthDistanceChartData">
+      <div class="col-sm-12">
+        <div style="display: block;">
+          <canvas baseChart width="400" height="400"
+                  [datasets]="monthDistanceChartData"
+                  [labels]="monthDistanceChartLabels"
+                  [options]="monthDistanceChartOptions"
+                  [colors]="monthDistanceChartColors"
+                  [legend]="monthDistanceChartLegend"
+                  [chartType]="monthDistanceChartType"
+                  ></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 pt-4 pb-0">
+        <h4>Best Effort Comparison</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="form-group mb-2">
+              <label class="mb-2 mr-sm-2" for="type"><h5>Efforts</h5></label>
+              <select class="form-control mb-2" id="type" #et (change)="effortChanged(et.value)">
+                <option *ngFor="let t of effortTypes; let i = index" [value]="i">{{t.name}}</option>
+              </select>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="effortChartData">
+      <div class="col-sm-12">
+        <div style="display: block;">
+          <canvas baseChart width="400" height="400"
+                  [datasets]="effortChartData"
+                  [labels]="effortChartLabels"
+                  [options]="effortChartOptions"
+                  [colors]="effortChartColors"
+                  [legend]="effortChartLegend"
+                  [chartType]="effortChartType"
+                  ></canvas>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
