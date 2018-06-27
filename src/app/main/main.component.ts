@@ -32,21 +32,22 @@ export class MainComponent implements OnInit {
         this.title = this.getTitle(this.router.routerState, this.router.routerState.root).join(' - ');
 
         this.titleService.setTitle(this.titleBase + ' | ' + this.title);
-      }
+        this.shrinked = false;
 
-      let activeUrl = this.router.url;
-      let segs = activeUrl.split('/');
+        let activeUrl = this.router.url;
+        let segs = activeUrl.split('/');
 
-      this.activeLink = segs[1];
-      if(this.activeLink === 'boards') {
-        this.boardsExpanded = true;
-      }
-      else {
-        this.boardsExpanded = false;
-      }
+        this.activeLink = segs[1];
+        if(this.activeLink === 'boards') {
+          this.boardsExpanded = true;
+        }
+        else {
+          this.boardsExpanded = false;
+        }
 
-      if(segs.length === 3) {
-        this.activeSubLink = segs[2];
+        if(segs.length === 3) {
+          this.activeSubLink = segs[2];
+        }
       }
     });
   }
