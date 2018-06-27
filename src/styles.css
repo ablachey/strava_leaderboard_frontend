@@ -8,15 +8,7 @@ body {
   height: 100%;
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
-  background-color: #fff;
-}
-
-h1 {
-  color: #44b917;
-}
-
-h2 {
-  color: #44b917;
+  background-color: #22252a;
 }
 
 .auth-btn {
@@ -108,5 +100,9 @@ h2 {
 }
 
 .del:hover {
+  cursor: pointer;
+}
+
+.gen-link:hover {
   cursor: pointer;
 }

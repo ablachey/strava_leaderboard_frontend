@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service'
 import { User } from '../../auth/user';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ProfileService } from './profile.service';
 import { AlertService } from '../../shared/alert/alert.service';
 import { TimePipe } from '../../shared/pipes/time.pipe';
@@ -10,15 +9,23 @@ import { DistancePipe } from '../../shared/pipes/distance.pipe';
 
 class TOP {
   count: number;
+  countPrev: number;
   time: number;
+  timePrev: number;
   distance: number;
+  distancePrev: number;
   calories: number;
+  caloriesPrev: number;
 
-  constructor(count: number, time: number, distance: number, calories: number) { 
+  constructor(count: number, countPrev: number, time: number, timePrev: number, distance: number, distancePrev: number, calories: number, caloriesPrev: number) { 
     this.count = count;
+    this.countPrev = countPrev;
     this.time = time;
+    this.timePrev = timePrev;
     this.distance = distance;
+    this.distancePrev = distancePrev;
     this.calories = calories;
+    this.caloriesPrev = caloriesPrev;
   }
 }
 
@@ -40,6 +47,7 @@ class EF {
 export class ProfileComponent implements OnInit {
   userId: number = null;
   user: User = null;
+  isActiveUser: boolean = false;
   topData: TOP = null;
   effortTypes:Array<EF> = [
     new EF('400m', 'four-hundred'),
@@ -120,6 +128,7 @@ export class ProfileComponent implements OnInit {
     this.userId = this.route.snapshot.params.id;
 
     if(!this.userId) {
+      this.isActiveUser = true;
       this.authService.getLocalUser().subscribe(
         u => {
           this.user = u;
@@ -147,13 +156,6 @@ export class ProfileComponent implements OnInit {
       )
     }
   }
-
-  /*getData() {
-    this.getTop();
-    this.getMonthTime();
-    this.getMonthDistance();
-    this.getEfforts(this.effortTypes[0]);
-  }*/
 
   getTop() {
     this.profileService.getAccumulated(this.userId).subscribe(

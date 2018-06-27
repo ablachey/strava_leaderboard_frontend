@@ -6,6 +6,8 @@ import { CardComponent } from './card/card.component';
 import { AuthGuardService } from '../shared/guards/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BoardJoinComponent } from './board/board-join/board-join.component';
+import { BoardMyComponent } from './board/board-my/board-my.component';
 
 const mainRoutes: Routes = [
   {
@@ -14,25 +16,31 @@ const mainRoutes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}, children: [
+        path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
+      },
+      {
+        path: 'boards', component: BoardComponent, data: {title: 'Boards'}, children: [
           {
-            path: 'boards', component: BoardComponent, data: {title: 'Boards'} 
+            path: 'join', component: BoardJoinComponent, data: {title: 'Join'}
           },
           {
-            path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
-          }
+            path: 'my', component: BoardMyComponent, data: {title: 'My Boards'}
+          },
+          {
+            path: '', redirectTo: 'my', pathMatch: 'full'
+          },
         ]
       },
       {
-        path: 'profiles/:id', component: ProfileComponent, data: {title: 'Profile'}
+        path: 'profiles/:id', component: ProfileComponent, data: {title: 'Athlete Profile'}
       },
       {
-        path: 'board/:id/cards', component: CardComponent, data: {title: 'Cards'} 
+        path: 'boards/:id/cards', component: CardComponent, data: {title: 'Cards'} 
       },
       {
-        path: '', redirectTo: '/dashboard/profile', pathMatch: 'full'
+        path: '', redirectTo: '/profile', pathMatch: 'full'
       },
-      { path: '**', redirectTo: '/dashboard/profile', pathMatch: 'full'}
+      { path: '**', redirectTo: '/profile', pathMatch: 'full'}
     ]
   }
 ];

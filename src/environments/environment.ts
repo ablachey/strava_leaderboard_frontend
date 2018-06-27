@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  apiBase: "http://leaderboard.test/api/",
-  stravaAuth: "https://www.strava.com/oauth/authorize?client_id=24837&response_type=code&redirect_uri=http://192.168.100.4:4200/auth/authorize&approval_prompt=force&scope=public",
+  apiBase: "https://leaderboard-api.clayapps.com/api/",
+  stravaAuth: "https://www.strava.com/oauth/authorize?client_id=24837&response_type=code&redirect_uri=http://localhost:4200/auth/authorize&approval_prompt=force&scope=public",
   titleBase: 'Leaderboard',
   stravaActivityUrl: 'https://www.strava.com/activities/'
 };

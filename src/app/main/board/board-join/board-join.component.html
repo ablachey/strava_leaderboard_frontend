@@ -1,0 +1,36 @@
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="block">
+          <div class="title">
+            Search for boards and request to join
+          </div>
+          <div class="block-body">
+            <form (ngSubmit)="srch()" #searchForm="ngForm">
+              <div class="form-group">
+                <input class="form-control" name="search" type="text" placeholder="Keyword" required min="1" [(ngModel)]="keyword" #search="ngModel">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" [disabled]="!searchForm.form.valid">Search</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <app-alert></app-alert>
+    <div class="row">
+      <div class="col-sm-4 col-12 grid-item" *ngFor="let searchBoard of searchBoards">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ searchBoard.name }}</h5>
+            <button class="btn btn-success" (click)="join(searchBoard.id)" *ngIf="!searchBoard.isJoined;else alreadyJoined">Join</button>
+            <ng-template #alreadyJoined><button class="btn btn-secondary" disabled>Joined</button></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

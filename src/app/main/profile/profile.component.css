@@ -13,10 +13,10 @@
 }
 
 .profile-img {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   border-radius: 30px;
-  border: solid 3px rgba(68, 185, 23, 0.6);
+  border: solid 3px #fc4c02;
 }
 
 .profile-name {

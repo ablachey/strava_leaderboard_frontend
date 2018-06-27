@@ -1,128 +1,148 @@
-<div class="container">
-  <div class="row pt-3">
-    <div class="col-sm-12">
-      <app-alert></app-alert>
-    </div>
-  </div>
-  <div class="row"  *ngIf="user">
-    <div class="col-lg-1 col-md-1 col-sm-3 col-3">
-      <img [src]="user.image.large" class="profile-img">
-    </div>
-    <div class="col-lg-5 col-md-5 col-sm-9 col-9 pt-3 card profile-name card-success">
-      <span><b>{{ user.firstname }} {{ user.lastname }}</b></span>
-    </div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-sm-12 pt-3 pb-0">
-      <h4>Month To Date</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="topData">
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6 justify-content-center">
-      <div class="col-sm-12 profile-accu text-center">
-        <h5 class="accu-val">{{ topData.count }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Activities
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
-      <div class="col-sm-12 profile-accu ">
-        <h5 class="accu-val">{{ topData.time | time }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Time
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
-      <div class="col-sm-12 profile-accu ">
-        <h5 class="accu-val">{{ topData.distance | distance }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Distance
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-6  text-center">
-      <div class="col-sm-12 profile-accu ">
-        <h5 class="accu-val">{{ topData.calories | calorie }}</h5>
-      </div>
-      <div class="col-sm-12 text-center">
-        Calories
+<section class="no-padding-top" *ngIf="!isActiveUser">
+  <div class="container-fluid">
+    <div class="row pb-2"  *ngIf="user && !isActiveUser">
+      <div class="col-lg-12 pb-2 text-center">
+        <img [src]="user.image.large" class="profile-img">
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 pt-4 pb-0">
-      <h4>Last Month Comparison (Time)</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="monthTimeChartData">
-    <div class="col-sm-12">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="monthTimeChartData"
-                [labels]="monthTimeChartLabels"
-                [options]="monthTimeChartOptions"
-                [colors]="monthTimeChartColors"
-                [legend]="monthTimeChartLegend"
-                [chartType]="monthTimeChartType"
-                ></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 pt-4 pb-0">
-      <h4>Last Month Comparison (Distance)</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="monthDistanceChartData">
-    <div class="col-sm-12">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="monthDistanceChartData"
-                [labels]="monthDistanceChartLabels"
-                [options]="monthDistanceChartOptions"
-                [colors]="monthDistanceChartColors"
-                [legend]="monthDistanceChartLegend"
-                [chartType]="monthDistanceChartType"
-                ></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 pt-4 pb-0">
-      <h4>Best Effort Comparison</h4>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-inline">
-          <div class="form-group mb-2">
-            <label class="mb-2 mr-sm-2" for="type"><h5>Efforts</h5></label>
-            <select class="form-control mb-2" id="type" #et (change)="effortChanged(et.value)">
-              <option *ngFor="let t of effortTypes; let i = index" [value]="i">{{t.name}}</option>
-            </select>
+</section>
+<section class="no-padding-top" *ngIf="topData">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="calendar"></fa></div><strong>Activities</strong>
+            </div>
+            <div class="number dashtext-1">{{ topData.count }}</div>
+          </div>
+          <div class="progress progress-template">
+            <div role="progressbar" [style.width.%]="(topData.count * 100) / topData.countPrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
           </div>
         </div>
-    </div>
-  </div>
-  <div class="row" *ngIf="effortChartData">
-    <div class="col-sm-12">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="400"
-                [datasets]="effortChartData"
-                [labels]="effortChartLabels"
-                [options]="effortChartOptions"
-                [colors]="effortChartColors"
-                [legend]="effortChartLegend"
-                [chartType]="effortChartType"
-                ></canvas>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="hourglass"></fa></div><strong>Time</strong>
+            </div>
+            <div class="number dashtext-1">{{ topData.time | time }}</div>
+          </div>
+          <div class="progress progress-template">
+            <div role="progressbar" [style.width.%]="(topData.time * 100) / topData.timePrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="road"></fa></div><strong>Distance</strong>
+            </div>
+            <div class="number dashtext-1">{{ topData.distance | distance }}</div>
+          </div>
+          <div class="progress progress-template">
+            <div role="progressbar" [style.width.%]="(topData.distance * 100) / topData.distancePrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="fire"></fa></div><strong>Calories</strong>
+            </div>
+            <div class="number dashtext-1">{{ topData.calories | calorie }}</div>
+          </div>
+          <div class="progress progress-template">
+            <div role="progressbar" [style.width.%]="(topData.calories * 100) / topData.caloriesPrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row pt-3">
+      <div class="col-sm-12">
+        <app-alert></app-alert>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-sm-6 pl-0 pr-0">
+        <div class="col-sm-12 pb-1">
+          <h5>Time Comparison</h5>
+        </div>
+        <div class="col-sm-12" *ngIf="monthTimeChartData">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400"
+                    [datasets]="monthTimeChartData"
+                    [labels]="monthTimeChartLabels"
+                    [options]="monthTimeChartOptions"
+                    [colors]="monthTimeChartColors"
+                    [legend]="monthTimeChartLegend"
+                    [chartType]="monthTimeChartType"
+                    ></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 pl-0 pr-0">
+        <div class="col-sm-12 pb-1">
+          <h5>Time Comparison</h5>
+        </div>
+        <div class="col-sm-12" *ngIf="monthDistanceChartData">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400"
+                    [datasets]="monthDistanceChartData"
+                    [labels]="monthDistanceChartLabels"
+                    [options]="monthDistanceChartOptions"
+                    [colors]="monthDistanceChartColors"
+                    [legend]="monthDistanceChartLegend"
+                    [chartType]="monthDistanceChartType"
+                    ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 pt-4 pb-0">
+        <h5>Best Effort Comparison</h5>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="form-group mb-2">
+              <label class="mb-2 mr-sm-2" for="type"><h5>Efforts</h5></label>
+              <select class="form-control mb-2" id="type" #et (change)="effortChanged(et.value)">
+                <option *ngFor="let t of effortTypes; let i = index" [value]="i">{{t.name}}</option>
+              </select>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="effortChartData">
+      <div class="col-sm-12">
+        <div style="display: block;">
+          <canvas baseChart width="400" height="400"
+                  [datasets]="effortChartData"
+                  [labels]="effortChartLabels"
+                  [options]="effortChartOptions"
+                  [colors]="effortChartColors"
+                  [legend]="effortChartLegend"
+                  [chartType]="effortChartType"
+                  ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
