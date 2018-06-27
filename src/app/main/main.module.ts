@@ -6,7 +6,6 @@ import { BoardModule } from './board/board.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CardModule } from './card/card.module';
 import { AuthGuardService } from '../shared/guards/auth-guard.service';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileModule } from './profile/profile.module';
 import { PiperModule } from '../shared/pipes/piper.module';
 
@@ -17,7 +16,6 @@ import { PiperModule } from '../shared/pipes/piper.module';
     BoardModule,
     AngularFontAwesomeModule,
     CardModule,
-    DashboardModule,
     ProfileModule,
     PiperModule
   ],

@@ -4,7 +4,6 @@ import { MainComponent } from './main.component';
 import { BoardComponent } from './board/board.component';
 import { CardComponent } from './card/card.component';
 import { AuthGuardService } from '../shared/guards/auth-guard.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardJoinComponent } from './board/board-join/board-join.component';
 import { BoardMyComponent } from './board/board-my/board-my.component';
