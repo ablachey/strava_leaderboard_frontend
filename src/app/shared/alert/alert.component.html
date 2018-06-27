@@ -10,11 +10,9 @@
     </div>
 </div>
 
-<div *ngIf="alertService.isLoading" class="loading-screen">
+<div *ngIf="alertService.isLoading" class="loading-screen text-center">
   <div class="loading-content">
-      <div class="loading-gif text-center">
-        <img src="assets/images/loader.gif">
-      </div>
+      <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       <div class="loading-text text-center">
         Loading...
       </div>
