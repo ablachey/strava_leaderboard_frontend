@@ -93,18 +93,6 @@ export class CardComponent implements OnInit {
 
         this.loadFastCards();
         this.alertService.loadingStop();
-        
-        //REMOVED AFTER WEBHOOK IMPLEMENTATION
-        /*this.activityService.syncBoard(this.selectedBoard).subscribe(
-          () => {
-            this.loadFastCards();
-            this.alertService.loadingStop();
-          },
-          e => {
-            this.alertService.handleErrors(e);
-            this.alertService.loadingStop();
-          }
-        );*/
       },
       e => {
         this.alertService.handleErrors(e);

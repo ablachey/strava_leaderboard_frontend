@@ -1,165 +1,185 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 p-2">
-      <div class="form-inline">
-          <div class="form-group mb-2">
-            <label class="mb-2 mr-sm-2" for="days"><h4>{{ boardName }}</h4></label>
-            <select class="form-control mb-2" id="days" #d (change)="changeDays(d.value)">
-              <option *ngFor="let dayCount of days" [value]="dayCount">Last {{dayCount}} days</option>
-            </select>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 p-2">
+        <div class="form-inline">
+            <div class="form-group mb-2">
+              <label class="mb-2 mr-sm-2" for="days"><h4>{{ boardName }}</h4></label>
+              <select class="form-control mb-2" id="days" #d (change)="changeDays(d.value)">
+                <option *ngFor="let dayCount of days" [value]="dayCount">Last {{dayCount}} days</option>
+              </select>
+            </div>
           </div>
-        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <app-alert></app-alert>
-    </div>
-  </div>
-  <div class="row justify-content-center" *ngIf="leader.count > 0">
-    <div class="col-lg-4 col-md-4 col-sm-12 mb-3 col-12 text-center">
-      <div class="card pt-2">
-        <h5>Leader</h5>
-        <div class="row">
-          <div class="col-sm-12">
-            <img class="img-responsive leader-img" src="{{ leader.athlete.image.large }}">
-          </div>
-          <div class="col-sm-12 pt-2">
-            <p><strong>{{ leader.athlete.firstname }} {{ leader.athlete.lastname }}</strong></p>
-            <p>Have won {{ leader.count }} cards in last {{ selectedDays }} days</p>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <app-alert></app-alert>
       </div>
     </div>
   </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <h5>Fastest Runs</h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 col-12 mb-3" *ngFor="let fastCard of fastSubject|async">
-      <div class="card" *ngIf="fastCard.entries.length > 0">
-        <div class="card-header">
-          <b>{{ fastCard.name }}</b>
-        </div>
-        <div class="card-body p-0">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let entry of fastCard.entries; let i = index">
-              <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.activity.strava_id}}" target="_blank">
-                <div class="row">
-                  <div class="col-sm-2 col-3">
-                    <img class="card-img" src="{{ entry.activity.athlete.image.medium }}">
-                  </div>
-                  <div class="col-sm-4 col-9">
-                    {{ entry.activity.athlete.firstname }} {{ entry.activity.athlete.lastname }}
-                  </div>
-                  <div class="col-sm-2 col-4">
-                    <small>{{ entry.activity.start_date_local }}</small>
-                  </div>
-                  <div class="col-sm-2 col-4">
-                    <small>{{ entry.distance|distance }}</small>
-                  </div>
-                  <div class="col-sm-2 col-4">
-                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                      {{ entry.elapsed_time|time }}
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <h5>Max Performance</h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 col-12 mb-3" *ngFor="let highCard of highSubject|async">
-      <div class="card" *ngIf="highCard.entries.length > 0">
-        <div class="card-header">
-          <b>{{ highCard.name }}</b>
-        </div>
-        <div class="card-body p-0">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let entry of highCard.entries; let i = index">
-              <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.strava_id}}" target="_blank">
-                <div class="row">
-                  <div class="col-sm-2 col-3">
-                    <img class="card-img" src="{{ entry.athlete.image.medium }}">
-                  </div>
-                  <div class="col-sm-4 col-9">
-                    {{ entry.athlete.firstname }} {{ entry.athlete.lastname }}
-                  </div>
-                  <div class="col-sm-2 col-4">
-                    <small>{{ entry.start_date_local }}</small>
-                  </div>
-                  <div class="col-sm-4 col-4" *ngIf="highCard.type == 'longest-run'">
-                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                      {{ entry.elapsed_time|time }}
-                    </span>
-                  </div>
-                  <div class="col-sm-4 col-4" *ngIf="highCard.type == 'furthest-run'">
-                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                      {{ entry.distance|distance }}
-                    </span>
-                  </div>
-                  <div class="col-sm-4 col-4" *ngIf="highCard.type == 'max-calories'">
-                    <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                      {{ entry.calories | calorie }} Calories
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-12">
-      <h5>Overall Performance</h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 col-12 mb-3" *ngFor="let overallCard of overallSubject|async">
-      <div class="card" *ngIf="overallCard.entries.length > 0">
-        <div class="card-header">
-          <b>{{ overallCard.name }}</b>
-        </div>
-        <div class="card-body p-0">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let entry of overallCard.entries; let i = index">
-              <div class="row">
-                <div class="col-sm-2 col-2">
-                  <img class="card-img" src="{{ entry.athlete.image.medium }}">
-                </div>
-                <div class="col-sm-6 col-6">
-                  {{ entry.athlete.firstname }} {{ entry.athlete.lastname }}
-                </div>
-                <div class="col-sm-4 col-2" *ngIf="overallCard.type == 'overall-time'">
-                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.value|time }}
-                  </span>
-                </div>
-                <div class="col-sm-4 col-2" *ngIf="overallCard.type == 'overall-distance'">
-                  <span class="badge badge-secondary float-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
-                    {{ entry.value|distance }}
-                  </span>
-                </div>
+</section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row justify-content-center" *ngIf="leader.count > 0">
+      <div class="col-lg-4 col-md-4 col-sm-12 mb-3 col-12 text-center">
+        <div class="block pt-2">
+          <div class="title">
+            <h5>Leader</h5>
+          </div>
+          <div class="block-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <img class="img-responsive leader-img" src="{{ leader.athlete.image.large }}">
               </div>
-            </li>
-          </ul>
+              <div class="col-sm-12 pt-2">
+                <p><strong>{{ leader.athlete.firstname }} {{ leader.athlete.lastname }}</strong></p>
+                <p>Won {{ leader.count }} cards in last {{ selectedDays }} days</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Fastest Runs</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-12" *ngFor="let fastCard of fastSubject|async">
+        <div class="card" *ngIf="fastCard.entries.length > 0">
+          <div class="card-header">
+            <b>{{ fastCard.name }}</b>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tbody>
+                  <tr *ngFor="let entry of fastCard.entries; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td><img class="card-img" src="{{ entry.activity.athlete.image.medium }}"></td>
+                    <td>
+                      <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.strava_id}}" target="_blank">
+                        {{ entry.activity.start_date_local }}
+                      </a>
+                    </td>
+                    <td>
+                        {{ entry.distance|distance }}
+                    </td>
+                    <td>
+                      <span class="badge badge-secondary pull-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                        {{ entry.elapsed_time|time }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Max Performance</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-12" *ngFor="let highCard of highSubject|async">
+        <div class="card" *ngIf="highCard.entries.length > 0">
+          <div class="card-header">
+            <b>{{ highCard.name }}</b>
+          </div>
+          <div class="card-body p-0">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr *ngFor="let entry of highCard.entries; let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td><img class="card-img" src="{{ entry.athlete.image.medium }}"></td>
+                      <td>
+                        <a class="activity-link" href="{{ stravaActivityUrl }}{{entry.strava_id}}" target="_blank">
+                          {{ entry.start_date_local }}
+                        </a>
+                      </td>
+                      <td>
+                        <div *ngIf="highCard.type == 'longest-run'">
+                          <span class="badge badge-secondary pull-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                            {{ entry.elapsed_time|time }}
+                          </span>
+                        </div>
+                        <div *ngIf="highCard.type == 'furthest-run'">
+                          <span class="badge badge-secondary pull-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                            {{ entry.distance|distance }}
+                          </span>
+                        </div>
+                        <div *ngIf="highCard.type == 'max-calories'">
+                          <span class="badge badge-secondary pull-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                            {{ entry.calories | calorie }} Calories
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Overall Performance</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-12" *ngFor="let overallCard of overallSubject|async">
+        <div class="card" *ngIf="overallCard.entries.length > 0">
+          <div class="card-header">
+            <b>{{ overallCard.name }}</b>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tbody>
+                  <tr *ngFor="let entry of overallCard.entries; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td><img class="card-img" src="{{ entry.athlete.image.medium }}"></td>
+                    <td>{{ entry.athlete.firstname }} {{ entry.athlete.lastname }}</td>
+                    <td>
+                      <div *ngIf="overallCard.type == 'overall-time'">
+                        <span class="badge badge-secondary pull-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                          {{ entry.value|time }}
+                        </span>
+                      </div>
+                      <div *ngIf="overallCard.type == 'overall-distance'">
+                        <span class="badge badge-secondary pull-right mt-2" [ngClass]="(i == 0) ? 'leader-gold' : (i == 1) ? 'leader-silver' : (i == 2) ? 'leader-bronze' : 'leader-not'">
+                          {{ entry.value|distance }}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

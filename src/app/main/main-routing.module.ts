@@ -34,7 +34,7 @@ const mainRoutes: Routes = [
         path: 'profiles/:id', component: ProfileComponent, data: {title: 'Athlete Profile'}
       },
       {
-        path: 'boards/:id/cards', component: CardComponent, data: {title: 'Cards'} 
+        path: 'boards/:id/cards', component: CardComponent, data: {title: 'Board Detail'} 
       },
       {
         path: '', redirectTo: '/profile', pathMatch: 'full'
