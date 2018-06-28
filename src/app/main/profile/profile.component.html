@@ -146,3 +146,12 @@
     </div>
   </div>
 </section>
+<section class="no-padding-top" *ngIf="!isActiveUser">
+  <div class="container-fluid">
+    <div class="row pb-2"  *ngIf="user && !isActiveUser">
+      <div class="col-lg-12 pb-2 text-center">
+        <a [routerLink]="['/prs', user.id]" class="btn btn-primary">View Best Efforts</a>
+      </div>
+    </div>
+  </div>
+</section>
