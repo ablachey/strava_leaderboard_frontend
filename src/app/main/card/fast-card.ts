@@ -1,4 +1,4 @@
-import { Activity } from './activity';
+import { Activity } from '../activity/activity';
 import { User } from '../../auth/user';
 
 export class FastCard {

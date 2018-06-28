@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { FastCard } from './fast-card';
-import { Activity } from './activity';
+import { Activity } from '../activity/activity';
 import { OverallCard } from './overall-card';
 
 @Injectable()

@@ -6,7 +6,7 @@ import { FastCard } from './fast-card';
 import { BoardService } from '../board/board.service';
 import { Board } from '../board/board';
 import { User } from '../../auth/user';
-import { Activity } from './activity';
+import { Activity } from '../activity/activity';
 import { OverallCard } from './overall-card';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ActivityService } from '../../shared/services/activity.service';
