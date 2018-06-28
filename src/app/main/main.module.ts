@@ -8,6 +8,7 @@ import { CardModule } from './card/card.module';
 import { AuthGuardService } from '../shared/guards/auth-guard.service';
 import { ProfileModule } from './profile/profile.module';
 import { PiperModule } from '../shared/pipes/piper.module';
+import { ActivityModule } from './activity/activity.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { PiperModule } from '../shared/pipes/piper.module';
     AngularFontAwesomeModule,
     CardModule,
     ProfileModule,
-    PiperModule
+    PiperModule,
+    ActivityModule
   ],
   declarations: [MainComponent],
   providers: [AuthGuardService]

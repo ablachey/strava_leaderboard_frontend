@@ -11,6 +11,7 @@ export class Activity {
     public elapsed_time?: number,
     public type?: string,
     public start_date_local?: string,
+    public summary_polyline?: string,
     public athlete?: User,
   ) { }
 }

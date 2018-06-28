@@ -7,6 +7,8 @@ import { AuthGuardService } from '../shared/guards/auth-guard.service';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardJoinComponent } from './board/board-join/board-join.component';
 import { BoardMyComponent } from './board/board-my/board-my.component';
+import { ActivityComponent } from './activity/activity.component';
+import { ActivityListingComponent } from './activity/activity-listing/activity-listing.component';
 
 const mainRoutes: Routes = [
   {
@@ -35,6 +37,16 @@ const mainRoutes: Routes = [
       },
       {
         path: 'boards/:id/cards', component: CardComponent, data: {title: 'Board Detail'} 
+      },
+      {
+        path: 'activities', component: ActivityComponent, data: {title: 'Activities'}, children: [
+          {
+            path: 'recent', component: ActivityListingComponent, data: {title: 'Recent'}
+          },
+          {
+            path: '', redirectTo: 'recent', pathMatch: 'full'
+          }
+        ]
       },
       {
         path: '', redirectTo: '/profile', pathMatch: 'full'

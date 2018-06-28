@@ -27,13 +27,13 @@
       <li [class]="(activeLink === 'profile') ? 'active' : ''"><a routerLink="/profile"> <fa name="user"></fa>Profile </a></li>
       <li [class]="(activeLink === 'boards') ? 'active' : ''">
         <a class="gen-link collapsed" (click)="expandBoards()" [attr.aria-expanded]="boardsExpanded" data-toggle="collapse"> <fa name="list-ul"></fa>Boards </a>
-        <ul id="exampledropdownDropdown" class="collapse list-unstyled {{ (boardsExpanded) ? 'show' : ''}}">
+        <ul class="collapse list-unstyled {{ (boardsExpanded) ? 'show' : ''}}">
           <li [class]="(activeSubLink === 'join') ? 'active' : ''"><a routerLink="/boards/join">Join</a></li>
           <li [class]="(activeSubLink === 'my') ? 'active' : ''"><a routerLink="/boards/my">My Boards</a></li>
         </ul>
       </li>
-      <li><a href="#"> <fa name="trophy"></fa>PR Showcase </a></li>
-      <li><a href="#"> <fa name="hourglass-half"></fa>Recent Activities </a></li>
+      <li [class]="(activeLink === 'activity') ? 'active' : ''"><a href="#"> <fa name="trophy"></fa>PR Showcase </a></li>
+      <li [class]="(activeLink === 'activities') ? 'active' : ''"><a routerLink="/activities/recent"> <fa name="hourglass-half"></fa>Recent Activities </a></li>
       <li><a href="#"> <i class="fa fa-bar-chart"></i>Annual Stats </a></li>
     </ul>
   </nav>

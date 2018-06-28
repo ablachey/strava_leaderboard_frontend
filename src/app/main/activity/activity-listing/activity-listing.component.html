@@ -1,0 +1,31 @@
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-alert></app-alert>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top">
+    <div class="container-fluid">
+      <div class="public-user-block block" *ngFor="let activity of activities">
+        <div class="row d-flex align-items-center">                   
+          <div class="col-lg-4 d-flex align-items-center">
+            <div class="avatar"> <img src="{{ activity.athlete.image.medium }}" alt="..." class="img-fluid"></div><a href="{{ stravaActivityUrl }}{{activity.strava_id}}" target="_blank" class="name"><strong class="d-block">{{ activity.name }}</strong><span class="d-block">{{ activity.start_date_local }}</span></a>
+          </div>
+          <div class="col-lg-4 text-center">
+            <div class="contributions"><fa name="hourglass"></fa> {{ activity.elapsed_time | time }}</div>
+          </div>
+          <div class="col-lg-4">
+            <div class="details d-flex">
+              <div class="item"><fa name="road"></fa><strong>{{ activity.distance | distance }}</strong></div>
+              <div class="item"><fa name="heart"></fa><strong>{{ (activity.has_heartrate) ? activity.average_heartrate : '-' }}</strong></div>
+              <div class="item"><fa name="fire"></fa><strong>{{ activity.calories | calorie }}</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
