@@ -1,0 +1,34 @@
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row pt-3">
+      <div class="col-sm-12">
+        <app-alert></app-alert>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top" *ngIf="!isActiveUser">
+  <div class="container-fluid">
+    <div class="row pb-2"  *ngIf="user && !isActiveUser">
+      <div class="col-lg-12 pb-2 text-center">
+        <img [src]="user.image.large" class="profile-img">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top" *ngIf="prs">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-6" *ngFor="let pr of prs">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="trophy"></fa></div><strong>{{ pr.name }}</strong>
+            </div>
+            <div class="number dashtext-1">{{ pr.e_time | time }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -9,6 +9,7 @@ import { BoardJoinComponent } from './board/board-join/board-join.component';
 import { BoardMyComponent } from './board/board-my/board-my.component';
 import { ActivityComponent } from './activity/activity.component';
 import { ActivityListingComponent } from './activity/activity-listing/activity-listing.component';
+import { PrComponent } from './pr/pr.component';
 
 const mainRoutes: Routes = [
   {
@@ -47,6 +48,12 @@ const mainRoutes: Routes = [
             path: '', redirectTo: 'recent', pathMatch: 'full'
           }
         ]
+      },
+      {
+        path: 'pr', component: PrComponent, data: {title: 'Best Efforts'}
+      },
+      {
+        path: 'prs/:id', component: PrComponent, data: {title: 'Best Efforts'}
       },
       {
         path: '', redirectTo: '/profile', pathMatch: 'full'

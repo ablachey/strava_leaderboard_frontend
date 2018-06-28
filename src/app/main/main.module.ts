@@ -9,6 +9,7 @@ import { AuthGuardService } from '../shared/guards/auth-guard.service';
 import { ProfileModule } from './profile/profile.module';
 import { PiperModule } from '../shared/pipes/piper.module';
 import { ActivityModule } from './activity/activity.module';
+import { PrModule } from './pr/pr.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ActivityModule } from './activity/activity.module';
     CardModule,
     ProfileModule,
     PiperModule,
-    ActivityModule
+    ActivityModule,
+    PrModule
   ],
   declarations: [MainComponent],
   providers: [AuthGuardService]
