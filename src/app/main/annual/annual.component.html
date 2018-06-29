@@ -1,3 +1,45 @@
-<p>
-  annual works!
-</p>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row pt-3">
+      <div class="col-sm-12">
+        <app-alert></app-alert>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="no-padding-top" *ngIf="topStats">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 linked-cont">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="calendar"></fa></div><strong>Total Runs</strong>
+            </div>
+            <div class="number dashtext-1">{{ topStats.runs }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 linked-cont">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="hourglass"></fa></div><strong>Total Time</strong>
+            </div>
+            <div class="number dashtext-1">{{ topStats.time | time }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 linked-cont">
+        <div class="statistic-block block">
+          <div class="progress-details d-flex align-items-end justify-content-between">
+            <div class="title">
+              <div class="icon"><fa name="road"></fa></div><strong>Total Distance</strong>
+            </div>
+            <div class="number dashtext-1">{{ topStats.distance | distance }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
