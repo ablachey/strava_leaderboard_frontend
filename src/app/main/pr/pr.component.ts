@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../profile/profile.service';
 import { User } from '../../auth/user';
 import { Pr } from './pr';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-pr',
@@ -17,6 +18,7 @@ export class PrComponent implements OnInit {
   user: User = null;
   isActiveUser: boolean = false;
   prs: Pr[] = [];
+  stravaActivityUrl: string = environment.stravaActivityUrl;
 
   constructor(public prService: PrService, public alertService: AlertService, public authService: AuthService, public route: ActivatedRoute, public profileService: ProfileService) { }
 

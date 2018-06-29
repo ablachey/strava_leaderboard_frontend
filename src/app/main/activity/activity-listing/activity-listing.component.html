@@ -10,9 +10,10 @@
 <section class="no-padding-top">
     <div class="container-fluid">
       <div class="public-user-block block" *ngFor="let activity of activities">
-        <div class="row d-flex align-items-center">                   
+
+        <a href="{{ stravaActivityUrl }}{{activity.strava_id}}" target="_blank" class="row d-flex align-items-center linked-cont">                   
           <div class="col-lg-4 d-flex align-items-center">
-            <div class="avatar"> <img src="{{ activity.athlete.image.medium }}" alt="..." class="img-fluid"></div><a href="{{ stravaActivityUrl }}{{activity.strava_id}}" target="_blank" class="name"><strong class="d-block">{{ activity.name }}</strong><span class="d-block">{{ activity.start_date_local }}</span></a>
+            <span class="name"><strong class="d-block">{{ activity.name }}</strong><span class="d-block">{{ activity.start_date_local }}</span></span>
           </div>
           <div class="col-lg-4 text-center">
             <div class="contributions"><fa name="hourglass"></fa> {{ activity.elapsed_time | time }}</div>
@@ -24,7 +25,8 @@
               <div class="item"><fa name="fire"></fa><strong>{{ activity.calories | calorie }}</strong></div>
             </div>
           </div>
-        </div>
+        </a>
+
       </div>
     </div>
   </section>

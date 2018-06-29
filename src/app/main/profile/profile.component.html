@@ -23,12 +23,12 @@
         <div class="statistic-block block">
           <div class="progress-details d-flex align-items-end justify-content-between">
             <div class="title">
-              <div class="icon"><fa name="calendar"></fa></div><strong>Activities</strong>
+              <div class="icon"><fa name="calendar"></fa></div><strong>Runs</strong>
             </div>
             <div class="number dashtext-1">{{ topData.count }}</div>
           </div>
           <div class="progress progress-template">
-            <div role="progressbar" [style.width.%]="(topData.count * 100) / topData.countPrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+            <div role="progressbar" [style.width.%]="(topData.count * 100) / topData.countPrev" [attr.aria-valuenow]="(topData.count * 100) / topData.countPrev" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
             <div class="number dashtext-1">{{ topData.time | time }}</div>
           </div>
           <div class="progress progress-template">
-            <div role="progressbar" [style.width.%]="(topData.time * 100) / topData.timePrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+            <div role="progressbar" [style.width.%]="(topData.time * 100) / topData.timePrev" [attr.aria-valuenow]="(topData.time * 100) / topData.timePrev" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
             <div class="number dashtext-1">{{ topData.distance | distance }}</div>
           </div>
           <div class="progress progress-template">
-            <div role="progressbar" [style.width.%]="(topData.distance * 100) / topData.distancePrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+            <div role="progressbar" [style.width.%]="(topData.distance * 100) / topData.distancePrev" [attr.aria-valuenow]="(topData.distance * 100) / topData.distancePrev" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
             <div class="number dashtext-1">{{ topData.calories | calorie }}</div>
           </div>
           <div class="progress progress-template">
-            <div role="progressbar" [style.width.%]="(topData.calories * 100) / topData.caloriesPrev" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+            <div role="progressbar" [style.width.%]="(topData.calories * 100) / topData.caloriesPrev" [attr.aria-valuenow]="(topData.calories * 100) / topData.caloriesPrev" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
           </div>
         </div>
       </div>

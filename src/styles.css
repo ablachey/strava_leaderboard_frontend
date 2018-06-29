@@ -117,3 +117,20 @@ body {
 .profile-name {
   background-color: rgba(68, 185, 23, 0.2);
 }
+
+.linked-cont {
+  color: #6a6c70 !important;
+  text-decoration: none;
+}
+
+.linked-cont:hover {
+  text-decoration: none;
+}
+
+.linked-cont:active {
+  text-decoration: none;
+}
+
+.gold {
+  color: #ffd700 !important;
+}

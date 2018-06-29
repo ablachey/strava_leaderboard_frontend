@@ -19,16 +19,19 @@
 <section class="no-padding-top" *ngIf="prs">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3 col-sm-6" *ngFor="let pr of prs">
+      <a href="{{ stravaActivityUrl }}{{pr.strava_id}}" target="_blank" class="col-md-3 col-sm-6 linked-cont" *ngFor="let pr of prs">
         <div class="statistic-block block">
           <div class="progress-details d-flex align-items-end justify-content-between">
             <div class="title">
-              <div class="icon"><fa name="trophy"></fa></div><strong>{{ pr.name }}</strong>
+              <div class="icon gold"><fa name="trophy"></fa></div><strong>{{ pr.name }}</strong>
             </div>
             <div class="number dashtext-1">{{ pr.e_time | time }}</div>
           </div>
+          <div class="pr-date">
+            <small>{{ pr.start_date_local }}</small>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>

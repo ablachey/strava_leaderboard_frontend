@@ -32,7 +32,7 @@
           <li [class]="(activeSubLink === 'my') ? 'active' : ''"><a routerLink="/boards/my">My Boards</a></li>
         </ul>
       </li>
-      <li [class]="(activeLink === 'pr') ? 'active' : ''"><a routerLink="/pr"> <fa name="trophy"></fa>PR Showcase </a></li>
+      <li [class]="(activeLink === 'pr') ? 'active' : ''"><a routerLink="/pr"> <fa name="trophy"></fa>Best Efforts </a></li>
       <li [class]="(activeLink === 'activities') ? 'active' : ''"><a routerLink="/activities/recent"> <fa name="clock-o"></fa>Recent Activities </a></li>
       <li><a href="#"> <i class="fa fa-bar-chart"></i>Annual Stats </a></li>
     </ul>
@@ -47,7 +47,7 @@
     <footer class="footer">
       <div class="footer__block block no-margin-bottom">
         <div class="container-fluid text-center">
-          <p class="no-margin-bottom">{{ now | date: "y" }} &copy; Clay Apps. Powered by <a href="https://www.strava.com">Strava</a>.</p>
+          <p class="no-margin-bottom">{{ now | date: "y" }} &copy; <a href="http://clayapps.com">Clay Apps</a>.</p>
         </div>
       </div>
     </footer>
