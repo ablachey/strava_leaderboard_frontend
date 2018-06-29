@@ -10,6 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 import { PiperModule } from '../shared/pipes/piper.module';
 import { ActivityModule } from './activity/activity.module';
 import { PrModule } from './pr/pr.module';
+import { AnnualModule } from './annual/annual.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { PrModule } from './pr/pr.module';
     ProfileModule,
     PiperModule,
     ActivityModule,
-    PrModule
+    PrModule,
+    AnnualModule
   ],
   declarations: [MainComponent],
   providers: [AuthGuardService]

@@ -34,7 +34,7 @@
       </li>
       <li [class]="(activeLink === 'pr') ? 'active' : ''"><a routerLink="/pr"> <fa name="trophy"></fa>Best Efforts </a></li>
       <li [class]="(activeLink === 'activities') ? 'active' : ''"><a routerLink="/activities/recent"> <fa name="clock-o"></fa>Recent Activities </a></li>
-      <li><a href="#"> <i class="fa fa-bar-chart"></i>Annual Stats </a></li>
+      <li [class]="(activeLink === 'annual') ? 'active' : ''"><a routerLink="/annual"> <i class="fa fa-bar-chart"></i>Annual Stats </a></li>
     </ul>
   </nav>
   <div class="page-content {{ (shrinked) ? 'active' : '' }}">

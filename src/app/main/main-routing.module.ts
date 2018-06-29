@@ -10,6 +10,7 @@ import { BoardMyComponent } from './board/board-my/board-my.component';
 import { ActivityComponent } from './activity/activity.component';
 import { ActivityListingComponent } from './activity/activity-listing/activity-listing.component';
 import { PrComponent } from './pr/pr.component';
+import { AnnualComponent } from './annual/annual.component';
 
 const mainRoutes: Routes = [
   {
@@ -54,6 +55,9 @@ const mainRoutes: Routes = [
       },
       {
         path: 'prs/:id', component: PrComponent, data: {title: 'Best Efforts'}
+      },
+      {
+        path: 'annual', component: AnnualComponent, data: {title: 'Annual Stats'}
       },
       {
         path: '', redirectTo: '/profile', pathMatch: 'full'
