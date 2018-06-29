@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
   monthTimeChartOptions:any = null;
   monthTimeChartColors:Array<any> = [
     {
-      backgroundColor: 'rgba(68, 185, 23, 0.2)',
+      backgroundColor: 'rgba(68, 185, 23, 0.4)',
       borderColor: 'rgba(68, 185, 23, 1)',
       pointBackgroundColor: 'rgba(68, 185, 23, 1)',
       pointBorderColor: '#fff',
@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
   monthDistanceChartOptions:any = null;
   monthDistanceChartColors:Array<any> = [
     {
-      backgroundColor: 'rgba(226, 69, 1, 0.2)',
+      backgroundColor: 'rgba(226, 69, 1, 0.4)',
       borderColor: 'rgba(226,69,1,1)',
       pointBackgroundColor: 'rgba(226, 69, 1, 1)',
       pointBorderColor: '#fff',
@@ -111,12 +111,12 @@ export class ProfileComponent implements OnInit {
   effortChartOptions:any = null;
   effortChartColors:Array<any> = [
     {
-      backgroundColor: 'rgba(47, 197, 224, 0.4)',
-      borderColor: 'rgba(47, 197, 224, 1)',
-      pointBackgroundColor: 'rgba(47, 197, 224, 1)',
+      backgroundColor: 'rgba(207, 83, 249, 0.6)',
+      borderColor: 'rgba(207, 83, 249, 1)',
+      pointBackgroundColor: 'rgba(207, 83, 249, 1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(47, 197, 224, 0.8)'
+      pointHoverBorderColor: 'rgba(207, 83, 249, 0.8)'
     }
   ];
   effortChartLegend:boolean = false;

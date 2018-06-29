@@ -13,4 +13,14 @@ export class AnnualService {
     let url = this.baseUrl + 'stats';
     return this.http.get<any>(url);
   }
+
+  getDistanceData(): Observable<any> {
+    let url = this.baseUrl + 'distances';
+    return this.http.get<any>(url);
+  }
+
+  getBubbleData(): Observable<any> {
+    let url = this.baseUrl + 'bubble';
+    return this.http.get<any>(url);
+  }
 }

@@ -43,3 +43,43 @@
     </div>
   </div>
 </section>
+<section class="no-padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-sm-6 pl-0 pr-0">
+        <div class="col-sm-12 pb-1">
+          <h5>Distance By Month</h5>
+        </div>
+        <div class="col-sm-12" *ngIf="monthDistanceChartData">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400"
+                    [datasets]="monthDistanceChartData"
+                    [labels]="monthDistanceChartLabels"
+                    [options]="monthDistanceChartOptions"
+                    [colors]="monthDistanceChartColors"
+                    [legend]="monthDistanceChartLegend"
+                    [chartType]="monthDistanceChartType"
+                    ></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6 pl-0 pr-0">
+        <div class="col-sm-12 pb-1">
+          <h5>Activities In Months</h5>
+        </div>
+        <div class="col-sm-12" *ngIf="bubbleChartData">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400"
+                    [datasets]="bubbleChartData"
+                    [labels]="bubbleChartLabels"
+                    [options]="bubbleChartOptions"
+                    [colors]="bubbleChartColors"
+                    [legend]="bubbleChartLegend"
+                    [chartType]="bubbleChartType"
+                    ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
