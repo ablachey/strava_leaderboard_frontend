@@ -122,9 +122,13 @@ export class ProfileComponent implements OnInit {
   effortChartLegend:boolean = false;
   effortChartType:string = 'bar';
 
+  today: number = 0;
+
   constructor(public profileService: ProfileService, public alertService: AlertService, public authService: AuthService, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
+    let now = new Date();
+    this.today = now.getDate();
     this.userId = this.route.snapshot.params.id;
 
     if(!this.userId) {
@@ -194,6 +198,8 @@ export class ProfileComponent implements OnInit {
             }]
           },
           tooltips: {
+            mode: 'index',
+					  intersect: false,
             callbacks: {
               label: function(tooltipItem, data) {
                 var label = data.datasets[tooltipItem.datasetIndex].label || '';
@@ -211,10 +217,12 @@ export class ProfileComponent implements OnInit {
         };
 
         this.monthTimeChartLabels = d.last_month.days;
+        
+        let points = this.generatePoints(d.last_month.days);
 
         let md:Array<any> = [
-          {data: d.this_month.values, label: 'This Month'},
-          {data: d.last_month.values, label: 'Last Month'}
+          {data: d.this_month.values, label: 'This Month', pointRadius: points},
+          {data: d.last_month.values, label: 'Last Month', pointRadius: points}
         ];
         this.monthTimeChartData = md;
         
@@ -250,6 +258,8 @@ export class ProfileComponent implements OnInit {
             }]
           },
           tooltips: {
+            mode: 'index',
+					  intersect: false,
             callbacks: {
               label: function(tooltipItem, data) {
                 var label = data.datasets[tooltipItem.datasetIndex].label || '';
@@ -266,9 +276,11 @@ export class ProfileComponent implements OnInit {
 
         this.monthDistanceChartLabels = d.last_month.days;
 
+        let points = this.generatePoints(d.last_month.days);
+
         let md:Array<any> = [
-          {data: d.this_month.values, label: 'This Month'},
-          {data: d.last_month.values, label: 'Last Month'}
+          {data: d.this_month.values, label: 'This Month', pointRadius: points},
+          {data: d.last_month.values, label: 'Last Month', pointRadius: points}
         ];
         this.monthDistanceChartData = md;
         
@@ -340,5 +352,20 @@ export class ProfileComponent implements OnInit {
 
   effortChanged(i: number) {
     this.getEfforts(this.effortTypes[i]);
+  }
+
+  generatePoints(days: Array<any>): Array<number> {
+    let points: Array<number> = [];
+    
+    for(let dy of days) {
+      let p = 0;
+      if(dy === this.today) {
+        p = 6;
+      }
+
+      points.push(p);
+    }
+
+    return points;
   }
 }
