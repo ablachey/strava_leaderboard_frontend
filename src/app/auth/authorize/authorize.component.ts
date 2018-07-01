@@ -52,7 +52,7 @@ export class AuthorizeComponent implements OnInit {
             this.authService.setLocalUser(user);
 
             if(this.authService.isLoggedIn) {
-              let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'boards';
+              let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'profile';
 
               this.router.navigate([redirect]);
               this.alertService.clear();
