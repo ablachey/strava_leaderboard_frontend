@@ -11,6 +11,7 @@ import { ActivityComponent } from './activity/activity.component';
 import { ActivityListingComponent } from './activity/activity-listing/activity-listing.component';
 import { PrComponent } from './pr/pr.component';
 import { AnnualComponent } from './annual/annual.component';
+import { ConnectionComponent } from './connection/connection.component';
 
 const mainRoutes: Routes = [
   {
@@ -19,7 +20,7 @@ const mainRoutes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'profile', component: ProfileComponent, data: {title: 'Profile'}
+        path: 'profile', component: ProfileComponent, data: {title: 'My Profile'}
       },
       {
         path: 'boards', component: BoardComponent, data: {title: 'Boards'}, children: [
@@ -58,6 +59,9 @@ const mainRoutes: Routes = [
       },
       {
         path: 'annual', component: AnnualComponent, data: {title: 'Annual Stats'}
+      },
+      {
+        path: 'connections', component: ConnectionComponent, data: {title: 'My Connections'}
       },
       {
         path: '', redirectTo: '/profile', pathMatch: 'full'

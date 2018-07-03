@@ -25,6 +25,7 @@
     </div>
     <ul class="list-unstyled">
       <li [class]="(activeLink === 'profile') ? 'active' : ''"><a routerLink="/profile"> <fa name="user"></fa>Profile </a></li>
+      <li [class]="(activeLink === 'connections') ? 'active' : ''"><a routerLink="/connections"> <fa name="link"></fa>Linked Users </a></li>
       <li [class]="(activeLink === 'boards') ? 'active' : ''">
         <a class="gen-link collapsed" (click)="expandBoards()" [attr.aria-expanded]="boardsExpanded" data-toggle="collapse"> <fa name="list-ul"></fa>Boards </a>
         <ul class="collapse list-unstyled {{ (boardsExpanded) ? 'show' : ''}}">
