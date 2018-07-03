@@ -1,7 +1,7 @@
 <header class="header">   
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-      <div class="navbar-header"><a routerLink="/profile" class="navbar-brand">
+      <div class="navbar-header"><a (click)="shrinker()" class="navbar-brand gen-link">
           <div class="brand-text brand-big text-uppercase {{ (shrinked) ? '' : 'visible' }}"><strong class="text-primary">Strava</strong><strong>Leaderboard</strong></div>
           <div class="brand-text brand-sm {{ (shrinked) ? 'visible' : '' }}"><strong class="text-primary">S</strong><strong>L</strong></div></a>
         <button class="sidebar-toggle" (click)="shrinker()"><fa name="{{ (shrinked) ? 'long-arrow-right' : 'long-arrow-left' }}"></fa></button>
@@ -17,7 +17,7 @@
 <div class="d-flex align-items-stretch">
   <nav id="sidebar" [class]="(shrinked) ? 'shrinked' : ''">
     <div class="sidebar-header d-flex align-items-center">
-      <div class="avatar"><img [src]="user.image.large" alt="..." class="img-fluid rounded-circle"></div>
+      <div class="avatar"><a routerLink="/profile"><img [src]="user.image.large" alt="..." class="img-fluid rounded-circle"></a></div>
       <div class="title">
         <h1 class="h5">{{ user.firstname }} {{ user.lastname }}</h1>
         <p>Active Athlete</p>
