@@ -27,7 +27,8 @@ export class MainComponent implements OnInit {
     this.router.events.subscribe(e => {
       this.activeLink = '';
       this.activeSubLink = '';
-
+      window.scroll(0, 0);
+      
       if(e instanceof NavigationEnd) {
         this.title = this.getTitle(this.router.routerState, this.router.routerState.root).join(' - ');
 
