@@ -13,11 +13,10 @@ import {
   HttpHeaders
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
