@@ -118,6 +118,8 @@ export class CardComponent implements OnInit {
     this.fastCards.push(new FC('Fastest 2 Miles', 'two-mile', []));
     this.fastCards.push(new FC('Fastest 5K', 'five-kilometer', []));
     this.fastCards.push(new FC('Fastest 10K', 'ten-kilometer', []));
+    this.fastCards.push(new FC('Fastest 15K', 'fifteen-kilometer', []));
+    this.fastCards.push(new FC('Fastest 10 Miles', 'ten-mile', []));
   }
 
   initHighCards(): void {

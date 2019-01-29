@@ -54,7 +54,9 @@ export class ProfileComponent implements OnInit {
     new EF('1/2 Mile', 'half-mile'),
     new EF('1K', 'kilometer'),
     new EF('1 Mile', 'mile'),
-    new EF('2 Mile', 'two-mile')
+    new EF('2 Mile', 'two-mile'),
+    new EF('5K', 'five-kilometer'),
+    new EF('10K', 'ten-kilometer')
   ];
 
   monthTimeChartData:Array<any> = null;
